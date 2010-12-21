@@ -1,0 +1,74 @@
+<project-modules id="moduleCoreId" project-version="2.0">
+  <wb-module deploy-name="wicketoracle">
+    <property name="context-root" value="wicketoracle"/>
+    <property name="java-output-path" value="build/classes/main"/>
+    <wb-resource deploy-path="/WEB-INF/classes" source-path="src/main/resources"/>
+    <wb-resource deploy-path="/WEB-INF/classes" source-path="src/main/java"/>
+    <wb-resource deploy-path="/" source-path="src/main/webapp"/>
+    <dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Andrew/.gradle/cache/org.slf4j/slf4j-log4j12/jars/slf4j-log4j12-1.6.1.jar">
+      <dependency-type>
+        uses
+      </dependency-type>
+    </dependent-module>
+    <dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Andrew/.gradle/cache/org.apache.wicket/wicket-datetime/jars/wicket-datetime-1.4.14.jar">
+      <dependency-type>
+        uses
+      </dependency-type>
+    </dependent-module>
+    <dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Andrew/.gradle/cache/org.slf4j/slf4j-api/jars/slf4j-api-1.6.1.jar">
+      <dependency-type>
+        uses
+      </dependency-type>
+    </dependent-module>
+    <dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Andrew/.gradle/cache/log4j/log4j/bundles/log4j-1.2.16.jar">
+      <dependency-type>
+        uses
+      </dependency-type>
+    </dependent-module>
+    <dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Andrew/.gradle/cache/org.apache.wicket/wicket/jars/wicket-1.4.14.jar">
+      <dependency-type>
+        uses
+      </dependency-type>
+    </dependent-module>
+    <dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Andrew/.gradle/cache/org.codehaus.jackson/jackson-core-asl/jars/jackson-core-asl-1.6.3.jar">
+      <dependency-type>
+        uses
+      </dependency-type>
+    </dependent-module>
+    <dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Andrew/.gradle/cache/joda-time/joda-time/jars/joda-time-1.6.2.jar">
+      <dependency-type>
+        uses
+      </dependency-type>
+    </dependent-module>
+    <dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Andrew/.gradle/cache/org.apache.wicket/wicket-devutils/jars/wicket-devutils-1.4.14.jar">
+      <dependency-type>
+        uses
+      </dependency-type>
+    </dependent-module>
+    <dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Andrew/.gradle/cache/org.apache.wicket/wicket-auth-roles/jars/wicket-auth-roles-1.4.14.jar">
+      <dependency-type>
+        uses
+      </dependency-type>
+    </dependent-module>
+    <dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Andrew/.gradle/cache/org.apache.wicket/wicket-extensions/jars/wicket-extensions-1.4.14.jar">
+      <dependency-type>
+        uses
+      </dependency-type>
+    </dependent-module>
+    <dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/wicketoracle/lib/ojdbc-11.2.0.1.0.jar">
+      <dependency-type>
+        uses
+      </dependency-type>
+    </dependent-module>
+    <dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Andrew/.gradle/cache/org.codehaus.jackson/jackson-mapper-asl/jars/jackson-mapper-asl-1.6.3.jar">
+      <dependency-type>
+        uses
+      </dependency-type>
+    </dependent-module>
+    <dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/wicketoracle/lib/oucp-11.2.0.1.0.jar">
+      <dependency-type>
+        uses
+      </dependency-type>
+    </dependent-module>
+  </wb-module>
+</project-modules>
