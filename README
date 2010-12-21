@@ -1,1 +1,59 @@
-Hello
+This project is designed to provide a strong starting point for information systems which will be implemented using Oracle & Apache Wicket.
+
+Prerequisites:
+==============
+
+Install Oracle XE ( http://www.oracle.com/technetwork/database/express-edition/downloads/102xewinsoft-090667.html )
+
+Download the latest version of the Oracle JDBC Driver - which is 11.2.0.2.0 at the time of writing ( http://www.oracle.com/technetwork/database/enterprise-edition/jdbc-112010-090769.html ). This is a single .jar file.
+
+Download the latest version of the Oracle Universal Connection Pool - which is 11.2.0.2.0 at the time of writing ( http://www.oracle.com/technetwork/database/enterprise-edition/downloads/ucp-112010-099129.html ). This is a single .jar file.
+
+Download and setup the latest version of Gradle - which is 0.9 at the time of writing ( http://www.gradle.org/downloads.html )
+
+Setup
+=====
+
+The root folder is the one which contains the file 'build.gradle.'
+
+1. Open ROOT_FOLDER/build.gradle. Search for the following lines - which will need to be customised for your needs:
+
+
+
+    oracle_install_user              = 'sys'
+    oracle_install_password          = 'hello'
+    oracle_install_sid               = 'xe'
+    commandLine "C:/oraclexe/app/oracle/product/10.2.0/server/BIN/sqlplus.exe"
+
+    systemProperties 'unit.test.connection.pool.url'                : 'jdbc:oracle:thin:@127.0.0.1:1522:xe'
+
+
+
+Note that typically, Oracle listens on port 1521, not port 1522.
+
+2. Create a new folder called 'lib' within the root folder. Place the jars containing the Oracle jdbc driver and the Oracle Universal Connection Pool into it.
+Note that the 'build.gradle' file requires that the Oracle jdbc driver .jar be called 'ojdbc-11.2.0.1.0.jar' and that the Oracle Universal Pool .jar be called 'oucp-11.2.0.1.0.jar'
+
+3. It is recommended that you create new, default tablespaces on your Oracle XE installation. There is a script in this project which can be found at:
+
+ROOT_FOLDER/src/main/database/oracle/SETUP_DB/physical/tablespaces.sql
+
+You will need to customise the following lines:
+
+define path_to_default_tablespace       = 'c:/oracle_tablespace/ts_template.dbf'
+define path_to_default_temp_tablespace  = 'c:/oracle_tablespace/tts_template.dbf'
+define path_to_default_undo_tablespace  = 'c:/oracle_tablespace/uts_template.dbf'
+
+The installation will not create any folders for you - you'll have to do this yourself.
+
+You will only ever have to perform this step once, ever.
+
+3. On the command line, navigate to the project's root directory. In order to build the database, you can issue the command:
+
+gradle buildDatabase
+
+Given that you completed step 1 successfully, gradle will lauch Oracle SQL*PLUS and install the database portion of this application.
+
+4. On the command line, you can now issue the standard gradle commands to build, test and launch the application. The following command will compile and lauch the application:
+
+gradle jettyRun
