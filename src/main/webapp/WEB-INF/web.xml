@@ -62,7 +62,7 @@
 
             <init-param>
                 <param-name>ucp-connection-pool-url</param-name>
-                <param-value>jdbc:oracle:thin:@127.0.0.1:1522:xe</param-value>
+                <param-value>jdbc:oracle:thin:@127.0.0.1:1521:xe</param-value>
             </init-param>
 
             <init-param>
