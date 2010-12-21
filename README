@@ -46,6 +46,8 @@ define path_to_default_undo_tablespace  = 'c:/oracle_tablespace/uts_template.dbf
 
 The installation will not create any folders for you - you'll have to do this yourself.
 
+In order to run this script you will need to log in to Oracle using SQL*PLUS, as either the SYS or SYSTEM user.
+
 You will only ever have to perform this step once, ever.
 
 3. On the command line, navigate to the project's root directory. In order to build the database, you can issue the command:
