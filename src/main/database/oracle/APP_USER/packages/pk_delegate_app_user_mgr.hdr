@@ -1,0 +1,55 @@
+prompt creating package pk_delegate_app_user_mgr
+
+create or replace package app_user.pk_delegate_app_user_mgr
+
+    /**
+      * purpose : api providing the facility to manage existing standard users.
+      */
+as
+
+    /**
+      * name : fn_get_list_ref_data
+      * desc : provides data which can populate the user search parameter form.
+      *      : this data can be used to refine the results returned by the user search.
+      */
+
+    function fn_get_list_ref_data
+    return sys_refcursor;
+
+    /**
+      * name   : fn_get_delegate_users
+      * desc   : provides the details of a set delegate users who match the search criteria specified by the parameters.
+      * params : p_aur_username -> the search will treat this text as a fragment of a username and perform a like '%xxx%' match on it.
+      *        : p_is_account_enabled -> 'Y' / 'N' - search for users on the basis of the status of their account.
+      *        : p_is_tracing_enabled -> 'Y' / 'N' - search for users on the basis of whether or not sql*trace is tracing their session.
+      *        : p_dbrl_id            -> search for users on the basis of the database roles that have been assigned to them.
+      *        : p_lower_record_limit -> used for paginating through the result set.
+      *        : p_upper_record_limit -> used for paginating through the result set.
+      */
+
+    function fn_get_delegate_users
+    (
+        p_aur_username       in app_data.v_delegate_app_user.aur_username%type
+    ,   p_is_account_enabled in app_data.v_delegate_app_user.aur_is_account_enabled%type
+    ,   p_is_tracing_enabled in app_data.v_delegate_app_user.aur_is_tracing_enabled%type
+    ,   p_dbrl_id            in app_data.v_usr_rd_dbrl.dbrl_id%type
+    ,   p_lower_record_limit in int                                                      default null
+    ,   p_upper_record_limit in int                                                      default null
+    )
+    return sys_refcursor;
+
+    /**
+      * name   : pr_update_delegate_users
+      * desc   : applies a set of user specified modifications to the accounts of delegate users.
+      * params : p_dataset -> set of changes to be applied to delegate users.
+      */
+
+    procedure pr_update_delegate_users
+    (
+        p_dataset in app_user.tty_delegate_app_user
+    );
+
+end pk_delegate_app_user_mgr;
+/
+
+sho err

@@ -1,0 +1,64 @@
+prompt creating package app_refdata.pk_intersection_list_mgr
+
+create or replace package app_refdata.pk_intersection_list_mgr
+authid current_user
+
+    /**
+      * purpose     : provides an interface through which list intersections can be managed via
+      *             : an application. list intersections are subject to insert and delete operations.
+      */
+
+as
+
+    /**
+      * name : fngetdata
+      * desc : list intersections occur between two lists - one is designated
+      *      : as the parent (the 'container' of child data). this function
+      *      : provides the a dataset reflecting that which is currently stored
+      *      : in the parent list.
+      */
+
+    function fn_get_parent_data
+    (
+        p_rds_id in app_data.v_list_ref_data.rds_id%type
+    )
+    return sys_refcursor;
+
+    /**
+      * name   : fn_get_child_data
+      * desc   : list intersections occur between two lists - one is designated
+      *        : as the child (that which is 'inside' of the parent data). this
+      *        : function provides the a dataset reflecting that which is
+      *        : currently part of the parent list and that which is available
+      *        : but not a part of it.
+      * params : p_parent_id -> the id (from app_data.ref_data_structure.rds_id) of the parent data structure.
+      *        : p_rds_id    -> the id (from app_data.ref_data_structure.rds_id) of the child data structure.
+      */
+
+    function fn_get_child_data
+    (
+        p_rds_id    in app_data.v_list_ref_data.rds_id%type
+    ,   p_parent_id in int
+    )
+    return sys_refcursor;
+
+    /**
+      * name   : pr_update
+      * desc   : attempt to apply changes specified by the user to the data
+      *        : structure under management.
+      * params : p_rds_id -> the id (from app_data.ref_data_structure.rds_id) of the data structure which is being managed.
+      *        : p_parent_id -> the id (from app_data.ref_data_structure.rds_id) of the parent data structure.
+      *        : p_dataset -> the set of changes requested to the data structure under management.
+      */
+
+    procedure pr_update
+    (
+        p_rds_id    in app_data.v_list_ref_data.rds_id%type
+    ,   p_parent_id in int
+    ,   p_dataset   in app_refdata.tty_intersection_list_ref_data
+    );
+
+end pk_intersection_list_mgr;
+/
+
+sho err

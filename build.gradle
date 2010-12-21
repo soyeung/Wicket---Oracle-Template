@@ -1,0 +1,115 @@
+import org.mortbay.jetty.nio.SelectChannelConnector;
+import org.mortbay.jetty.security.SslSocketConnector;
+
+apply plugin: 'code-quality'
+apply plugin: 'eclipse'
+apply plugin: 'java'
+apply plugin: 'jetty'
+apply plugin: 'project-report'
+apply plugin: 'war'
+
+sourceCompatibility = 1.6
+version = '1.0'
+description = 'An application written using Oracle and Wicket - an excellent starting point for high quality information systems'
+
+jar{
+    manifest
+    {
+        attributes 'Implementation-Title': 'Wicket - Oracle', 'Implementation-Version': version
+    }
+}
+
+sourceSets{
+    main
+    {
+        resources
+        {
+            //make sure that wicket .html & .properties are copied as part of the build
+            srcDir 'src/main/java'
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+    flatDir name: 'localRepository', dirs: 'lib'
+}
+
+jackson_version     = '1.6.3'
+junit_version       = '4.8.1'
+oracle_ucp_version  = '11.2.0.1.0'
+oracle_jdbc_version = '11.2.0.1.0'
+servlet_api_version = '2.5'
+slf4j_version       = '1.6.1'
+wicket_version      = '1.4.14'
+
+dependencies {
+    compile group: 'org.codehaus.jackson' , name: 'jackson-core-asl'   , version: jackson_version
+    compile group: 'org.codehaus.jackson' , name: 'jackson-mapper-asl' , version: jackson_version
+    compile group: 'oracle.jdbc'          , name: 'ojdbc'              , version: oracle_jdbc_version
+    compile group: 'oracle.ucp'           , name: 'oucp'               , version: oracle_jdbc_version
+    compile group: 'org.slf4j'            , name: 'slf4j-log4j12'      , version: slf4j_version
+    compile group: 'org.apache.wicket'    , name: 'wicket'             , version: wicket_version
+    compile group: 'org.apache.wicket'    , name: 'wicket-auth-roles'  , version: wicket_version
+    compile group: 'org.apache.wicket'    , name: 'wicket-devutils'    , version: wicket_version
+    compile group: 'org.apache.wicket'    , name: 'wicket-datetime'    , version: wicket_version
+    compile group: 'org.apache.wicket'    , name: 'wicket-extensions'  , version: wicket_version
+
+    providedCompile group: 'javax.servlet' , name: 'servlet-api'   , version: servlet_api_version
+
+    testCompile group: 'junit', name: 'junit', version: junit_version
+}
+
+task buildDatabase( type: Exec ){
+    oracle_install_user              = 'sys'
+    oracle_install_password          = 'hello'
+    oracle_install_sid               = 'xe'
+    oracle_install_connection_string = oracle_install_user + '/' + oracle_install_password + '@' + oracle_install_sid + ' as sysdba'
+    path_to_install_folder           = "@src/main/database/oracle/"
+    path_to_install_script           = '"' + path_to_install_folder + 'install.sql"'
+
+    def sqlplus_args = [
+                           "-L"
+                       ,   "\"$oracle_install_connection_string\""
+                       ,   "\"$path_to_install_script\""
+                       ,   path_to_install_folder
+                       ,   oracle_install_user
+                       ,   oracle_install_password
+                       ,   oracle_install_sid
+                       ]
+
+    commandLine "C:/oraclexe/app/oracle/product/10.2.0/server/BIN/sqlplus.exe"
+    args sqlplus_args
+}
+
+test{
+    systemProperties 'unit.test.connection.pool.class'              : 'oracle.jdbc.pool.OracleDataSource'
+    systemProperties 'unit.test.connection.pool.name'               : 'unit_test_ucp'
+    systemProperties 'unit.test.connection.pool.url'                : 'jdbc:oracle:thin:@127.0.0.1:1522:xe'
+    systemProperties 'unit.test.user'                               : 'UNIT_TEST'
+    systemProperties 'unit.test.password'                           : 'sup3r!2'
+    systemProperties 'unit.test.ucp.abandoned.connection.timeout'   : '300'
+    systemProperties 'unit.test.ucp.initial.pool.size'              : '0'
+    systemProperties 'unit.test.ucp.max.cached.statements'          : '50'
+}
+
+jettyRun{
+    //we run under both http and https - so let's set up 2 custom connectors and use them
+
+    SelectChannelConnector httpConnector = new SelectChannelConnector()
+    SslSocketConnector sslConnector = new SslSocketConnector();
+
+    httpConnector.setPort( 8082 )
+    httpConnector.setMaxIdleTime( 3600000 )
+    httpConnector.setSoLingerTime( -1 )
+
+    sslConnector.setPort( 443 )
+    sslConnector.setMaxIdleTime( 3600000 )
+    sslConnector.setSoLingerTime( -1 )
+    sslConnector.setKeystore( "$projectDir/config/jetty/jetty-ssl.keystore" )
+    sslConnector.setPassword( "jetty6" )
+    sslConnector.setKeyPassword( "jetty6" )
+
+    def connectors = [ httpConnector , sslConnector ]
+    jettyRun.connectors = connectors
+}

@@ -1,0 +1,36 @@
+prompt creating package app_refdata.pk_list_subdivision_sql
+
+create or replace package app_refdata.pk_list_subdivision_sql
+
+    /**
+      * purpose : generates sql used in the management of list subdivisions.
+      */
+
+    as
+
+    /**
+      * name : fn_get_data_sql
+      * desc : provide sql used to retrieve the dataset describing the current content of the data structure under management.
+      */
+
+    function fn_get_data_sql
+    (
+        p_rds_id in app_data.v_subdiv_ref_data.rds_id%type
+    )
+    return varchar2;
+
+    /**
+      * name : fn_get_update_sql
+      * desc : provide sql used to apply changes specified by the user to the data structure under management.
+      */
+
+    function fn_get_update_sql
+    (
+        p_rds_id in app_data.v_subdiv_ref_data.rds_id%type
+    )
+    return app_utility.tty_string;
+
+end pk_list_subdivision_sql;
+/
+
+sho err

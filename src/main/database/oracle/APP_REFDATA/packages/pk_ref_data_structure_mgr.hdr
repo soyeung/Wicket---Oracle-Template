@@ -1,0 +1,437 @@
+prompt create package app_refdata.pk_ref_data_structure_mgr
+
+create or replace package app_refdata.pk_ref_data_structure_mgr
+
+    /**
+      * manage the data which allows the reference data structure management facility to operate.
+      * the conventions which must be followed are described in the commentary. such is the cost of generic code.
+      * could act as the basis of a screen allowing data structures to be registered with the application
+      */
+
+as
+
+    /**
+      * name : fn_get_data_structure_list
+      */
+
+    function fn_get_data_structure_list
+    return sys_refcursor;
+
+    /**
+      * name   : fn_get_data_structure_list
+      * desc   : register a data structure with the reference data management
+      *        : facility. insert and update operations are permitted.
+      *        : structures classified as being a 'coded' list must
+      *        : conform to the following:
+      *        :
+      *        : a - data must be stored in a single table, containing the
+      *        :     following columns:
+      *        :
+      *        :     <column prefix>_id              int
+      *        :     <column prefix>_code            varchar2
+      *        :     <column prefix>_name            varchar2
+      *        :     <column prefix>_is_user_visible varchar2
+      *        :     <column prefix>_order           int
+      *        :     <column prefix>_created_by      varchar2
+      *        :     <column prefix>_created_date    timestamp
+      *        :     <column prefix>_updated_by      varchar2
+      *        :     <column prefix>_updated_date    timestamp
+      *        :
+      *        : b - a view must created which will be used by the reference
+      *        :     data management facility to select the data. it should
+      *        :     be named : v_adm_rd_<alias>. it needs to contain all
+      *        :     columns present in the table, less :
+      *        :     <column prefix>_updated_by.
+      *        :
+      *        : c - a view must be created which can be used by the application
+      *        :     (should the developer choose) in order to present information.
+      *        :     it needs to contain all columns present in the table less :
+      *        :     <column prefix>_updated_by
+      *        :     <column prefix>_updated_date
+      *        :
+      *        : d - a sequence must be created which will be used to derive values
+      *        :     for the column named : <column prefix>_id. it should be named:
+      *        :     sq_<alias>.
+      *        :
+      *        : e - a role must be created which allows users to manage this
+      *        :     coded list. issue the following in order to create the role
+      *        :     correctly:
+      *        :
+      *        :     create role <role name>;
+      *        :     grant role <role name> to app_user with admin option;
+      *        :     grant insert , update on app_data.<table name> to <role name>;
+      *        :     grant select on app_data.v_adm_rd_<alias> to <role name>;
+      *        :     grant select on app_data.sq_<alias> to <role name>;
+      *        :
+      *        : f - the role should be registered with the application appropriately
+      *        :     using the package app_data_registration.pkapprolesetup.
+      *        :
+      *        : example - see: app_data.language
+      *        :                app_data.v_adm_rd_lng
+      *        :                app_data.v_usr_rd_lng
+      *        :                app_data.sq_lng
+      *        :                role_rdm_language
+      * params :
+      *        : p_owning_schema -> the schema owning the table, views and
+      *        :                    sequence
+      *        :
+      *        : p_description   -> description of the data structure's purpose
+      *        :
+      *        : p_table_name    -> the name of the table storing the data
+      *        :
+      *        : p_alias         -> the alias by which this list will be referred
+      *        :                    to. aliases must be unique.
+      *        :
+      *        : p_column_prefix -> the string which prefixes all columns within the
+      *        :                    the table. typically this will be the same as the
+      *        :                    table alias.
+      *        :
+      *        : p_sequence_name -> the name of the sequence from which id values will
+      *        :                    be derived.
+      */
+
+    procedure pr_add_coded_list
+    (
+        p_owning_schema in app_data.v_coded_list_ref_data.rds_owning_schema%type
+    ,   p_description   in app_data.v_coded_list_ref_data.rds_description%type
+    ,   p_table_name    in app_data.v_coded_list_ref_data.rds_table_name%type
+    ,   p_alias         in app_data.v_coded_list_ref_data.rds_alias%type
+    ,   p_column_prefix in app_data.v_coded_list_ref_data.rds_column_prefix%type
+    ,   p_sequence      in app_data.v_coded_list_ref_data.rds_id_sequence%type
+    );
+
+    /**
+      * name   : pr_add_standard_list
+      * desc   : register a data structure with the reference data management
+      *        : facility. insert and update operations are permitted.
+      *        : structures classified as being a 'standard' list must
+      *        : conform to the following:
+      *        :
+      *        : a - data must be stored in a single table, containing (but not limited to)
+      *        :     the following columns:
+      *        :
+      *        :     <column prefix>_id              int
+      *        :     <column prefix>_code            varchar2
+      *        :     <column prefix>_name            varchar2
+      *        :     <column prefix>_is_user_visible varchar2
+      *        :     <column prefix>_order           int
+      *        :     <column prefix>_created_by      varchar2
+      *        :     <column prefix>_created_date    timestamp
+      *        :     <column prefix>_updated_by      varchar2
+      *        :     <column prefix>_updated_date    timestamp
+      *        :
+      *        : b - a view must created which will be used by the reference
+      *        :     data management facility to select the data. it should
+      *        :     be named : v_adm_rd_<alias>. it needs to contain all
+      *        :     columns present in the table, less :
+      *        :     <column prefix>_updated_by.
+      *        :
+      *        : c - a view must be created which can be used by the application
+      *        :     (should the developer choose) in order to present information.
+      *        :     it needs to contain all columns present in the table less :
+      *        :     <column prefix>_updated_by
+      *        :     <column prefix>_updated_date
+      *        :
+      *        : d - a sequence must be created which will be used to derive values
+      *        :     for the column named : <column prefix>_id. it should be named:
+      *        :     sq_<alias>.
+      *        :
+      *        : e - a role must be created which allows users to manage this
+      *        :     coded list. issue the following in order to create the role
+      *        :     correctly:
+      *        :
+      *        :     create role <role name>;
+      *        :     grant role <role name> to app_user with admin option;
+      *        :     grant insert , update on app_data.<table name> to <role name>;
+      *        :     grant select on app_data.v_adm_rd_<alias> to <role name>;
+      *        :     grant select on app_data.sq_<alias> to <role name>;
+      *        :
+      *        : f - the role should be registered with the application appropriately
+      *        :     using the package app_data_registration.pkapprolesetup.
+      *        :
+      *        : example - see: app_data.app_user_type
+      *        :                app_data.v_adm_rd_uty
+      *        :                app_data.v_usr_rd_uty
+      *        :                app_data.sq_uty
+      *        :                role_rdm_app_user_type
+      * params :
+      *        : p_owning_schema -> the schema owning the table, views and
+      *        :                       sequence
+      *        :
+      *        : p_description   -> description of the data structure's purpose
+      *        :
+      *        : p_table_name    -> the name of the table storing the data
+      *        :
+      *        : p_alias         -> the alias by which this list will be referred
+      *        :                    to. aliases must be unique.
+      *        :
+      *        : p_column_prefix -> the string which prefixes all columns within the
+      *        :                    the table. typically this will be the same as the
+      *        :                    table alias.
+      *        :
+      *        : p_sequence_name -> the name of the sequence from which id values will
+      *        :                    be derived.
+      *        :
+      */
+
+    procedure pr_add_standard_list
+    (
+        p_owning_schema in app_data.v_list_ref_data.rds_owning_schema%type
+    ,   p_description   in app_data.v_list_ref_data.rds_description%type
+    ,   p_table_name    in app_data.v_list_ref_data.rds_table_name%type
+    ,   p_alias         in app_data.v_list_ref_data.rds_alias%type
+    ,   p_column_prefix in app_data.v_list_ref_data.rds_column_prefix%type
+    ,   p_sequence      in app_data.v_list_ref_data.rds_id_sequence%type
+    );
+
+    /**
+      * name   : pr_add_update_only_list
+      *        :
+      * desc   : register a data structure with the reference data management
+      *        : facility. only update operations are permitted.
+      *        : structures classified as being an 'update only' list must
+      *        : conform to the following:
+      *        :
+      *        : a - data must be stored in a single table, containing (but not limited to)
+      *        :     the following columns:
+      *        :
+      *        :     <column prefix>_id              int
+      *        :     <column prefix>_code            varchar2
+      *        :     <column prefix>_name            varchar2
+      *        :     <column prefix>_is_user_visible varchar2
+      *        :     <column prefix>_order           int
+      *        :     <column prefix>_created_by      varchar2
+      *        :     <column prefix>_created_date    timestamp
+      *        :     <column prefix>_updated_by      varchar2
+      *        :     <column prefix>_updated_date    timestamp
+      *        :
+      *        : b - a view must created which will be used by the reference
+      *        :     data management facility to select the data. it should
+      *        :     be named : v_adm_rd_<alias>. it needs to contain all
+      *        :     columns present in the table, less :
+      *        :     <column prefix>_updated_by.
+      *        :
+      *        : c - a view must be created which can be used by the application
+      *        :     (should the developer choose) in order to present information.
+      *        :     it has to be named : v_usr_rd_<alias>. it needs to contain the
+      *        :     (but not be limited to) the following columns :
+      *        :
+      *        :     <column prefix>_id              int
+      *        :     <column prefix>_name            varchar2
+      *        :     <column prefix>_is_user_visible varchar2
+      *        :     <column prefix>_order           int
+      *        :     <column prefix>_created_by      varchar2
+      *        :     <column prefix>_created_date    timestamp
+      *        :
+      *        : d - a role must be created which allows users to manage this
+      *        :     subdivision. issue the following in order to create the role
+      *        :     correctly:
+      *        :
+      *        :     create role <role name>;
+      *        :     grant role <role name> to app_user with admin option;
+      *        :     grant insert , delete on app_data.<table name> to <role name>;
+      *        :     grant select on app_data.v_adm_rd_<alias> to <role name>;
+      *        :
+      *        : e - the role should be registered with the application appropriately
+      *        :     using the package app_data_registration.pkapprolesetup.
+      *        :
+      *        : example - see: app_data.manageable_db_role
+      *        :                app_data.v_adm_rd_mdbrl
+      *        :                role_rdm_manageable_db_role
+      *        :
+      * params :
+      *        : p_owning_schema -> the schema owning the table, views and
+      *        :                   sequence
+      *        :
+      *        : p_description   -> description of the data structure's purpose
+      *        :
+      *        : p_table_name    -> the name of the table storing the data
+      *        :
+      *        : p_alias         -> the alias by which this list will be referred
+      *        :                    to. aliases must be unique.
+      *        :
+      *        : p_column_prefix -> the string which prefixes all columns within the
+      *        :                    the table. typically this will be the same as the
+      *        :                    table alias.
+      *        :
+      *        : p_sequence      -> the name of the sequence from which id values will
+      *        :                    be derived.
+      */
+
+    procedure pr_add_update_only_list
+    (
+        p_owning_schema in app_data.v_update_only_list_ref_data.rds_owning_schema%type
+    ,   p_description   in app_data.v_update_only_list_ref_data.rds_description%type
+    ,   p_table_name    in app_data.v_update_only_list_ref_data.rds_table_name%type
+    ,   p_alias         in app_data.v_update_only_list_ref_data.rds_alias%type
+    ,   p_column_prefix in app_data.v_update_only_list_ref_data.rds_column_prefix%type
+    ,   p_sequence      in app_data.v_update_only_list_ref_data.rds_id_sequence%type
+    );
+
+    /**
+      * name   : pr_add_list_subdivision
+      *        :
+      * desc   : register a data structure with the reference data management
+      *        : facility. only insert and delete operations are permitted. a subdivision
+      *        : represents a subset of another reference data structure.
+      *        :
+      *        : structures classified as being an 'subdivision' list must
+      *        : conform to the following:
+      *        :
+      *        : a - data must be stored in a single table, containing (but not limited to)
+      *        :     the following columns:
+      *        :
+      *        :     <column prefix>_id              int
+      *        :     <column prefix>_created_by      varchar2
+      *        :     <column prefix>_created_date    timestamp
+      *        :
+      *        : b - a view must created which will be used by the reference
+      *        :     data management facility to select the data. it should
+      *        :     be named : v_adm_rd_<alias>. it needs to contain (but no be limited to)
+      *        :     the following columns :
+      *        :
+      *        :     <column prefix>_id              int
+      *        :     <column prefix>_name            varchar2
+      *        :     <column prefix>_order           int
+      *        :     <column prefix>_created_by      varchar2
+      *        :     <column prefix>_created_date    timestamp
+      *        :     <column prefix>_updated_date    timestamp
+      *        :     <column prefix>_is_included     varchar2
+      *        :
+      *        : c - a view must be created which can be used by the application
+      *        :     (should the developer choose) in order to present information.
+      *        :     it needs to contain all columns present in the table less :
+      *        :     <column prefix>_updated_by
+      *        :     <column prefix>_updated_date
+      *        :
+      *        : d - a sequence must be created which will be used to derive values
+      *        :     for the column named : <column prefix>_id. it should be named:
+      *        :     sq_<alias>.
+      *        :
+      *        : e - a role must be created which allows users to manage this
+      *        :     coded list. issue the following in order to create the role
+      *        :     correctly:
+      *        :
+      *        :     create role <role name>;
+      *        :     grant role <role name> to app_user with admin option;
+      *        :     grant update on app_data.<table name> to <role name>;
+      *        :     grant select on app_data.v_adm_rd_<alias> to <role name>;
+      *        :     grant select on app_data.sq_<alias> to <role name>;
+      *        :
+      *        : f - the role should be registered with the application appropriately
+      *        :     using the package app_data_registration.pkapprolesetup.
+      *        :
+      *        : example - see: app_data.db_role
+      *        :                app_data.v_adm_rd_dbrl
+      *        :                app_data.v_usr_rd_dbrl
+      *        :                app_data.sq_dbrl
+      *        :                role_rdm_db_role
+      * params :
+      *        : p_owning_schema  -> the schema owning the table, views and
+      *        :                     sequence
+      *        :
+      *        : p_description    -> description of the data structure's purpose
+      *        :
+      *        : p_table_name     -> the name of the table storing the data
+      *        :
+      *        : p_alias          -> the alias by which this list will be referred
+      *        :                     to. aliases must be unique.
+      *        :
+      *        : p_parent_rds_id  -> the id (from app_data.ref_data_structure.rds_id)
+      *        :                     of the data structure which this subdivision is
+      *        :                     related to.
+      */
+
+    procedure pr_add_list_subdivision
+    (
+        p_owning_schema  in app_data.v_ref_data_structure.rds_owning_schema%type
+    ,   p_description    in app_data.v_ref_data_structure.rds_description%type
+    ,   p_table_name     in app_data.v_ref_data_structure.rds_table_name%type
+    ,   p_alias          in app_data.v_ref_data_structure.rds_alias%type
+    ,   p_parent_rds_id  in app_data.v_ref_data_structure.rds_id%type
+    );
+
+    /**
+      * name   : pr_add_list_intersection
+      *        :
+      * desc   : a list intersection represents a data structure that relates data from one
+      *        : list of reference data to another. commonly, such a table would represent
+      *        : a 'many-to-many' relationship.
+      *        :
+      *        : structures classified as being an 'intersection' list must 
+      *        : conform to the following:
+      *        :
+      *        : a - data must be stored in a single table, containing (but not limited to)
+      *        :     the following columns: 
+      *        :
+      *        :     <parent column prefix>_id    int
+      *        :     <child  column prefix>_id    int
+      *        :     <column prefix>_created_by   varchar2
+      *        :     <column prefix>_created_date timestamp
+      *        :
+      *        : b - a view must created which will be used by the reference data management
+      *        :     facility to select the data. it should be named : v_adm_rd_<alias>.
+      *        :     it needs to contain (but not be limited to) all of the columns specified 
+      *        :     in point 'a'.
+      *        :
+      *        : c - a view must be created which can be used by the application
+      *        :     (should the developer choose) in order to present information.
+      *        :     it needs to contain (but not but be limited) all of the columns specified
+      *        :     in point 'a'.
+      *        :
+      *        : d - a role must be created which allows users to manage this
+      *        :     coded list. issue the following in order to create the role
+      *        :     correctly:
+      *        :     
+      *        :     create role <role name>;
+      *        :     grant role <role name> to app_user with admin option;
+      *        :     grant select , insert , update on app_data.<table name> to <role name>;
+      *        :     grant select on app_data.v_adm_rd_<parent list alias> to <role name>;
+      *        :     grant select on app_data.v_adm_rd_<child list alias> to <role name>;
+      *        :
+      *        : e - the role should be registered with the application appropriately
+      *        :     using the package app_data_registration.pkapprolesetup.
+      *        :
+      *        : example - see: app_data.app_user_type [parent] 
+      *        :                app_data.db_role       [child]
+      *        :                app_data.v_adm_rd_uty  [parent view]
+      *        :                app_data.v_adm_rd_dbrl [child view]
+      *        :                role_rdm_app_user_type_role
+      * params : 
+      *        : p_owning_schema -> the schema owning the table, views and
+      *        :                    sequence
+      *        :
+      *        : p_description   -> description of the data structure's purpose
+      *        :
+      *        : p_table_name    -> the name of the table storing the data
+      *        :
+      *        : p_alias         -> the alias by which this list will be referred
+      *        :                    to. aliases must be unique.
+      *        :
+      *        : p_column_prefix -> the string which prefixes all columns within the
+      *        :                    the table. typically this will be the same as the
+      *        :                    table alias.
+      *        :
+      *        : p_rds_parent_id -> the id (from app_data.ref_data_structure.rds_id) 
+      *        :                    of the data structure which is deemed to be the parent.
+      *        :
+      *        : p_rds_parent_id -> the id (from app_data.ref_data_structure.rds_id) 
+      *        :                    of the data structure which is deemed to be the child.
+      *        :
+      */
+
+    procedure pr_add_list_intersection
+    (
+        p_owning_schema  in app_data.v_ref_data_structure.rds_owning_schema%type
+    ,   p_description    in app_data.v_ref_data_structure.rds_description%type
+    ,   p_table_name     in app_data.v_ref_data_structure.rds_table_name%type
+    ,   p_alias          in app_data.v_ref_data_structure.rds_alias%type
+    ,   p_column_prefix  in app_data.v_ref_data_structure.rds_column_prefix%type
+    ,   p_rds_parent_id  in app_data.v_ref_data_structure.rds_id%type
+    ,   p_rds_child_id   in app_data.v_ref_data_structure.rds_id%type
+    );
+
+end pk_ref_data_structure_mgr;
+/
+
+sho err

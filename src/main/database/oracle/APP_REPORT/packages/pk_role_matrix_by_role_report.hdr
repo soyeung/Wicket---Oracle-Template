@@ -1,0 +1,43 @@
+prompt creating package app_report.pk_role_matrix_by_role_report
+
+create or replace package app_report.pk_role_matrix_by_role_report
+
+    /**
+      *
+      * purpose     : provides all of the data required to run the security matrix by role
+      *             : report. this includes both the report dataset and data used to populate
+      *             : parameter forms. this report provides a grid detailing how roles are
+      *             : currently assigned to users.
+      */
+
+as
+
+    /**
+      * name        : fn_get_list_ref_data
+      * description : provides data which can populate a report parameter form. this
+      *             : data can be used to refine the results returned by the report.
+      */
+
+    function fn_get_list_ref_data
+    return sys_refcursor;
+
+    /**
+      * name   : fn_get_list_ref_data
+      * desc   : provides a dataset describing how roles are currently assigned
+      *        : to users. the dataset contains one column per database role, and
+      *        : one row per database user.
+      * params : p_aur_id  -> the 'id' of a user whose activity will be reported on. 'null' signals no restriction.
+      *        : p_dbrl_id -> the 'id' of a database role. see app_data.db_role.dbrl_id.
+      */
+
+    function fn_get_report
+    (
+        p_aur_id  in app_data.v_app_user.aur_id%type
+    ,   p_dbrl_id in app_data.v_usr_rd_dbrl.dbrl_id%type
+    )
+    return sys_refcursor;
+
+end pk_role_matrix_by_role_report;
+/
+
+sho err

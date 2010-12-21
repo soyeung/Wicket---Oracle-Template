@@ -1,0 +1,40 @@
+prompt creating package pk_delegate_user_role_mgr
+
+create or replace package app_user.pk_delegate_user_role_mgr
+
+    /**
+      * purpose : api providing the facility to grant / revoke database roles to / from existing delegate users.
+      */
+
+as
+
+    /**
+      * name   : fn_get_delegate_user_roles
+      * desc   : retrieve a list of all the manageable database roles (see app_data.manageable_db_role) , detailing whether or not the
+      *        : the user with an 'id' equal to 'p_aur_id' has been granted them.
+      * params : p_aur_id -> the user id of an existing user.
+      */
+
+    function fn_get_delegate_user_roles
+    (
+        p_aur_id in app_data.v_app_user.aur_id%type
+    )
+    return sys_refcursor;
+
+    /**
+      * name    : pr_update_delegate_user_roles
+      * desc    : set the roles of the user specified by 'p_aur_id' based on the content of 'p_dataset'.
+      * params  : p_aur_id  -> the user id of an existing user.
+      *         : p_dataset -> set of changes to be applied to the delegate user.
+      */
+
+    procedure pr_update_delegate_user_roles
+    (
+        p_aur_id  in app_data.v_app_user.aur_id%type
+    ,   p_dataset in app_user.tty_db_role
+    );
+
+end pk_delegate_user_role_mgr;
+/
+
+sho err

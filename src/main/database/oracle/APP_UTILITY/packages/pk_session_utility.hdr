@@ -1,0 +1,53 @@
+prompt creating package app_utility.pk_session_utility
+
+create or replace package app_utility.pk_session_utility
+
+    /**
+     * purpose : utilities which can be used to safely change the properties of the
+     *         : current session.
+     *
+     */
+
+as
+
+    /**
+     * name : fn_get_user_details
+     * desc : provide data required by the application in order that it can
+     *      : function correctly.
+     */
+
+    function fn_get_user_details
+    return sys_refcursor;
+
+    /**
+     * name   : pr_configure_session
+     * desc   : Setup a database session initiated by an application. It is
+     *        : incumbent on the application to call this procedure as a part of
+     *        : its connection activities.
+     *        :
+     * params : p_client_info -> text which will be associated with the current session using sys.dbms_session.set_identifier.
+     */
+
+    procedure pr_configure_session
+    (
+      p_client_info in varchar2
+    );
+
+    /**
+     * name   : pr_set_trace_file_identifier
+     * desc   : change the suffix of tracefiles produced by the sql*trace facility.
+     * params : p_tracefile_identifier -> the suffix of tracefiles produced as a result of tracing the current session.
+     */
+
+    procedure pr_set_trace_file_identifier
+    (
+      p_tracefile_identifier in varchar2
+    );
+
+end pk_session_utility;
+/
+
+sho err
+
+grant execute on app_utility.pk_session_utility to public
+/

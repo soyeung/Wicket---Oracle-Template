@@ -1,0 +1,39 @@
+<wicket:panel>
+
+<div id="ucp-state" dojoType="dijit.layout.ContentPane" title="Set State">
+
+    <h1><wicket:message key="HeaderUCPStateForm">[UCP State Form Header]</wicket:message></h1>
+
+    <form wicket:id="ucpStateMgrForm" dojoType="dijit.form.Form">
+
+        <span wicket:id="ucpStateRadioGroup">
+
+            <label for="PURGE"><wicket:message key="LabelUCPPurge"/></label>
+
+            <input wicket:id="purgeRadio" type="radio" dojoType="dijit.form.RadioButton"/>
+
+            <br/>
+
+            <label for="RECYCLE"><wicket:message key="LabelUCORecycle"/></label>
+
+            <input wicket:id="recycleRadio" type="radio" dojoType="dijit.form.RadioButton"/>
+
+            <br/>
+
+            <label for="REFRESH"><wicket:message key="LabelUCPRefresh"/></label>
+
+            <input wicket:id="refreshRadio" type="radio" dojoType="dijit.form.RadioButton"/>
+
+            <br/>
+
+            <br/>
+
+            <button dojoType="dijit.form.Button" type="submit"><wicket:message key="ButtonSubmit">[Submit button]</wicket:message></button>
+
+        </span>
+
+    </form>
+
+</div>
+
+</wicket:panel>

@@ -1,0 +1,23 @@
+prompt creating package pk_current_activity_report
+
+create or replace package app_report.pk_current_activity_report
+
+    /**
+      * purpose : provides all of the data required to run the current user activity report.
+      *         : this report provides a high level overview of the activity currently being
+      *         : undertaken by registered users of the system.
+      */
+
+as
+
+    /**
+      * name : fn_get_report
+      */
+
+    function fn_get_report
+    return sys_refcursor;
+
+end pk_current_activity_report;
+/
+
+sho err

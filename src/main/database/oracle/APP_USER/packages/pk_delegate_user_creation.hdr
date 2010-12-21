@@ -1,0 +1,44 @@
+prompt creating package pk_delegate_user_creation
+
+create or replace package app_user.pk_delegate_user_creation
+
+    /**
+      * purpose : api providing the facility to create new delegate database users. 
+      *         : once we commit to using true oracle users, a class of users must be 
+      *         : provided to perform application tasks which are not requested by any 
+      *         : particular user. for example, should the application be required to 
+      *         : allow people to register themselves with the application, a delegate user
+      *         : would be used to initiate the registration process even though no actual 
+      *         : person has logged in. (the application delegates this task to a specific
+      *         : user whose raison d'etre is to perform this task).
+      */
+
+as
+
+    /**
+      * name    : pr_create_delegate_user
+      * desc    : create a new delegate user. 'users' are true users in the sense of oracle - the concept of the 'one big application user' is has
+      *         : been rejected. this procedure ensures that the successfully created user will:
+      *         :
+      *         : have been granted a set of database roles;
+      *         : will have had sql*plus access restricted;
+      *         : will have registered a proxy user;
+      *         :
+      * params  : p_username -> the username of the user to be created.
+      *         : p_password -> the password of the user to be created.
+      *         : p_uty_id   -> the user type of the user to be created. a user type is an application defined collection of database roles.
+      *         : p_aurp_id  -> the oracle profile which will be assigned to the user being created. a profile controls password security.
+      */
+
+    procedure pr_create_delegate_user
+    (
+        p_username in app_data.v_app_user.aur_username%type
+    ,   p_password in varchar2
+    ,   p_uty_id   in app_data.v_usr_rd_uty.uty_id%type
+    ,   p_aurp_id  in app_data.v_usr_rd_aurp.aurp_id%type
+    );
+
+end pk_delegate_user_creation;
+/
+
+sho err

@@ -1,0 +1,41 @@
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd" >
+    <body>
+        <wicket:extend>
+                <div id="functional-content-body">
+
+                    <h1><wicket:message key="HeaderUnindexedForeignKeyReport">[Unindexed Foreign Key Report Header]</wicket:message></h1>
+
+                    <div wicket:id="ViewUnindexedForeignKey" id="searchResults">
+
+                        <table class="data-table">
+
+                            <thead>
+
+                                <tr>
+                                    <th wicket:id="LabelTableOwner">[Table Owner]</th>
+                                    <th wicket:id="LabelTableName">[Table Name]</th>
+                                    <th wicket:id="LabelConstraintName">[Constraint Name]</th>
+                                    <th wicket:id="LabelColumnNames">[Column Names]</th>
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+
+                                <tr wicket:id="UnindexedForeignKeyList">
+                                    <td><span wicket:id="tableOwner">[Table owner]</span></td>
+                                    <td><span wicket:id="tableName">[Table name]</span></td>
+                                    <td><span wicket:id="constraintName">[Constraint name]</span></td>
+                                    <td><span wicket:id="columnNames">[Column names]</span></td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+                </div>
+
+        </wicket:extend>
+    </body>
+</html>

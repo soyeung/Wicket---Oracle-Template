@@ -1,0 +1,33 @@
+<wicket:panel>
+
+    <div id="menu" dojoType="dijit.layout.ContentPane" region="leading">
+        <div id="userDetails">
+            <table class="data-table">
+                <tbody>
+                    <tr>
+                        <th><wicket:message key="LabelCurrentUsernameDescr">[Current username field description]</wicket:message></th>
+                        <td wicket:id="LabelCurrentUsername">[Current username]</td>
+                    </tr>
+                    <tr>
+                        <th><wicket:message key="LabelPasswordExpiryDateDescr">[Password Expiry Date - Description]</wicket:message></th>
+                        <td wicket:id="LabelPasswordExpiryDate">[Password Expiry Date]</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <ul>
+                <li><a wicket:id="LinkLogout"><wicket:message key="LabelLogoutLink">[Logout Link]</wicket:message></a></li>
+                <li><a wicket:id="LinkHomePage"><wicket:message key="LabelHomePageLink">[Home Page Link]</wicket:message></a></li>
+                <li><a wicket:id="LinkChangePassword"><wicket:message key="LabelChangePasswordLink">[Change Password Link]</wicket:message></a></li>
+                <li><a wicket:id="LinkCreateUser"><wicket:message key="LabelCreateUserLink">[Create User Link]</wicket:message></a></li>
+                <li><a wicket:id="LinkManageDelegateUsers"><wicket:message key="LabelManageDelegateUsersLink">[Manage Delegate Users Link]</wicket:message></a></li>
+                <li><a wicket:id="LinkManageStandardUsers"><wicket:message key="LabelManageStandardUsersLink">[Manage Standard Users Link]</wicket:message></a></li>
+                <li><a wicket:id="LinkManageUCP"><wicket:message key="LabelManageUCPLink">[Manage UCP Link]</wicket:message></a></li>
+                <li><a wicket:id="LinkManageData"><wicket:message key="LabelManageDataLink">[Manage Data Link]</wicket:message></a></li>
+                <li><a wicket:id="LinkReports"><wicket:message key="LabelReportsLink">[Reports]</wicket:message></a></li>
+            </ul>
+        </div>
+    </div>
+
+</wicket:panel>

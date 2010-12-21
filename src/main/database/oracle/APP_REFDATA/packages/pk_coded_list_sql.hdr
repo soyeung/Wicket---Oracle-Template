@@ -1,0 +1,47 @@
+prompt creating package app_refdata.pk_coded_list_sql
+
+create or replace package app_refdata.pk_coded_list_sql
+
+    /**
+      * purpose : generates sql used in the management of coded lists.
+      */
+
+as
+
+    /**
+      * name : fn_get_data_sql
+      * desc : provide sql used to retrieve the dataset describing the current content of the data structure under management.
+      */
+
+    function fn_get_data_sql
+    (
+        p_rds_id in app_data.v_coded_list_ref_data.rds_id%type
+    )
+    return varchar2;
+
+    /**
+      * name : fn_get_update_sql
+      * desc : provide sql used to apply changes specified by the user to the data structure under management.
+      */
+
+    function fn_get_update_sql
+    (
+        p_rds_id in app_data.v_coded_list_ref_data.rds_id%type
+    )
+    return app_utility.tty_string;
+
+    /**
+      * name : fn_get_lock_sql
+      * desc : provide sql used to implement optimistic locking with the data structure under management.
+      */
+
+    function fn_get_lock_sql
+    (
+        p_rds_id in app_data.v_coded_list_ref_data.rds_id%type
+    )
+    return varchar2;
+
+end pk_coded_list_sql;
+/
+
+sho err

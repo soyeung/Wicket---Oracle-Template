@@ -1,0 +1,21 @@
+prompt creating package app_report.pk_tables_without_pk_report
+
+create or replace package app_report.pk_tables_without_pk_report
+
+    /**
+      * purpose     : provides all of the data required to run the tables without primary keys report.
+      */
+
+as
+
+    /**
+      * name : fn_get_report
+      */
+
+    function fn_get_report
+    return sys_refcursor;
+
+end pk_tables_without_pk_report;
+/
+
+sho err

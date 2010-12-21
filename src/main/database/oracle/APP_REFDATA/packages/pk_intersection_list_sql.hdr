@@ -1,0 +1,62 @@
+prompt creating package app_refdata.pk_intersection_list_sql
+
+create or replace package app_refdata.pk_intersection_list_sql
+
+    /**
+      * purpose : generates sql used in the management of list intersections.
+      */
+
+as
+
+    /**
+      * name : fn_get_parent_data_sql
+      * desc : provide sql used to retrieve the dataset describing the current content of the parent list data structure.
+      */
+
+    function fn_get_parent_data_sql
+    (
+        p_rds_id in app_data.v_ref_data_structure.rds_id%type
+    )
+    return varchar2;
+
+    /**
+      * name : fn_get_child_data_sql
+      * desc : list intersections occur between two lists - one is designated
+      *      : as the child (that which is 'inside' of the parent data). this 
+      *      : function provides sql which will retrieve a dataset reflecting  
+      *      : that which is currently part of the parent list and that which 
+      *      : is available but not a part of it.
+      */
+
+    function fn_get_child_data_sql
+    (
+        p_rds_id in app_data.v_list_ref_data.rds_id%type
+    )
+    return varchar2;
+
+    /**
+      * name : fn_get_delete_sql
+      * desc : provides sql which will delete data from the list intersection.
+      */
+
+    function fn_get_delete_sql
+    (
+        p_rds_id in app_data.v_list_ref_data.rds_id%type
+    )
+    return varchar2;
+
+    /**
+      * name : fn_get_insert_sql
+      * desc : provides sql which will insert data into the list intersection.
+      */
+
+    function fn_get_insert_sql
+    (
+        p_rds_id in app_data.v_list_ref_data.rds_id%type
+    )
+    return varchar2;
+
+end pk_intersection_list_sql;
+/
+
+sho err

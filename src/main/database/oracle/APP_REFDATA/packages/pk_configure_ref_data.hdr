@@ -1,0 +1,26 @@
+prompt creating package pk_configure_ref_data
+
+create or replace package app_refdata.pk_configure_ref_data
+
+    /**
+      * purpose     : to provide an api allowing the maintenance of 
+      *             : reference data stored in the system.
+      */
+
+as
+
+    /**
+      * name   : pr_configure_ref_data
+      * desc   : apply a set of configuration details to the set of reference data structures which are manageable.
+      * params : p_data_structure -> dataset describing how reference data structures should be configured
+      */
+
+    procedure pr_configure_ref_data
+    (
+        p_data_structure in app_refdata.tty_ref_data_structure
+    );
+
+end pk_configure_ref_data;
+/
+
+sho err

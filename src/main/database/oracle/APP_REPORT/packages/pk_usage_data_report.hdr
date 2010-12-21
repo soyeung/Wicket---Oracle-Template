@@ -1,0 +1,13 @@
+prompt create package app_report.pk_usage_data_report
+
+create or replace package app_report.pk_usage_data_report
+as
+
+    /**
+      * name : fn_get_data
+      */
+    function fn_get_data
+    return sys_refcursor;
+
+end pk_usage_data_report;
+/

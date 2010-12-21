@@ -1,0 +1,43 @@
+CREATE USER APP_RUNSTATS IDENTIFIED BY APP_RUNSTATS
+/
+
+GRANT 
+      CREATE SESSION 
+    , CREATE TABLE
+    , CREATE VIEW
+    , CREATE PROCEDURE
+   TO 
+      APP_RUNSTATS
+/
+
+GRANT
+      SELECT ON SYS.v_$mystat
+   TO
+      APP_RUNSTATS
+/
+
+GRANT
+      SELECT ON SYS.v_$statname
+   TO
+      APP_RUNSTATS
+/
+
+GRANT
+      SELECT ON SYS.v_$latch
+   TO
+      APP_RUNSTATS
+/
+
+GRANT
+      SELECT ON SYS.v_$timer
+   TO
+      APP_RUNSTATS
+/
+
+@&PATH_TO_THIS_FILE\APP_RUNSTATS\table_run_stats
+
+@&PATH_TO_THIS_FILE\APP_RUNSTATS\view_v_run_stats
+
+@&PATH_TO_THIS_FILE\APP_RUNSTATS\pkRunStats.hdr
+
+@&PATH_TO_THIS_FILE\APP_RUNSTATS\pkRunStats.bdy

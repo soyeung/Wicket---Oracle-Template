@@ -1,0 +1,25 @@
+prompt create package app_report.pk_security_model_report
+
+create or replace package app_report.pk_security_model_report
+
+    /**
+      * purpose : provides a report showing how roles relate to each other.
+      *         : granting roles to other roles is discouraged - it leads to
+      *         : users receiving the same role any number of times, which
+      *         : complicated the security model. a situation in roles are never
+      *         : granted to other roles and where on role protects one single 
+      *         : piece of functionality is the optimal situation
+      */
+
+as
+
+    /**
+      * name: fn_get_report
+      */
+    function fn_get_report
+    return sys_refcursor;
+
+end pk_security_model_report;
+/
+
+sho err

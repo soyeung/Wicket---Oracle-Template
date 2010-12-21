@@ -1,0 +1,117 @@
+html, body
+{
+    font-family : Arial, Helvetica, sans-serif;
+    font-size   : 12px; 
+}
+
+body 
+     a:link
+   , a:active
+   , a:visited
+{
+  text-decoration : none;
+  color           : blue;
+}
+
+body 
+     a:hover
+{
+  text-decoration : underline;
+}
+
+ul 
+{
+  list-style-type : none;
+  padding-left    : 0;
+  margin-left     : 0;
+}
+
+li 
+{
+  padding-left  : 7px;
+  margin-bottom : 5px;
+}
+
+.data-table
+{
+  font-size : 12px; 
+}
+
+.data-table 
+            th
+{
+  text-align       : left;
+  font-weight      : bold;
+  background-color : #eee;  
+}
+
+.data-table
+            td
+{
+  text-align : right;
+}
+
+h1
+{
+  font-size : 16px;
+}
+
+h2
+{
+  font-size : 14px;
+}
+
+#page-validations
+{
+  text-align : center;
+}
+
+#developer-credit
+{
+  text-align : center;
+}
+
+
+/*  Style tabs */
+div.tabpanel div.tab-row ul 
+{
+  height: 20px;
+  margin: 0;
+  padding-left: 10px;
+  background: url( tabs4/tab_bottom.gif ) repeat-x bottom;
+}
+
+div.tabpanel div.tab-row li
+{
+  margin: 0;
+  padding: 0;
+  display: inline;
+  list-style-type: none;
+}
+
+div.tabpanel div.tab-row a:link, div.tabpanel div.tab-row a:visited 
+{
+  float: left;
+  background: #f3f3f3;
+  font-size: 12px;
+  line-height: 14px;
+  font-weight: bold;
+  padding: 2px 10px 2px 10px;
+  margin-right: 4px;
+  border: 1px solid #ccc;
+  text-decoration: none;
+  color: #666;
+}
+
+div.tabpanel div.tab-row li.selected a:link, div.tabpanel div.tab-row a:visited.active 
+{
+  border-bottom: 1px solid #fff;
+  background: #fff;
+  color: #000;
+}
+
+div.tabpanel div.tab-row a:hover 
+{
+  background: #fff;
+}ound: #fff;
+}}

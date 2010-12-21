@@ -1,0 +1,43 @@
+prompt creating package app_exception.pk_exception_codes
+
+create or replace package app_exception.pk_exception_codes
+
+    /**
+      * purpose : a list of global constants which the rest of the application can access to throw exceptions using
+      *         : the app_exception.pk_application_exception routines.
+      *         : Each entry in this package should have a matching entry in app_data.app_exception.aex_code.
+      */
+
+as
+
+    c_bad_trace_dir              constant app_data.app_exception.aex_code%type := 'BAD_TRACE_DIR';
+
+    c_cannot_disable_own_account constant app_data.app_exception.aex_code%type := 'CANNOT_DISABLE_OWN_ACCOUNT';
+
+    c_dangerous_password         constant app_data.app_exception.aex_code%type := 'DANGEROUS_PASSWORD';
+
+    c_dangerous_rolename         constant app_data.app_exception.aex_code%type := 'DANGEROUS_ROLENAME';
+
+    c_dangerous_username         constant app_data.app_exception.aex_code%type := 'DANGEROUS_USERNAME';
+
+    c_non_editable_ref_data      constant app_data.app_exception.aex_code%type := 'NON_EDITABLE_REF_DATA';
+
+    c_unknown_user               constant app_data.app_exception.aex_code%type := 'UNKNOWN_USER';
+
+    c_optimistic_locking         constant app_data.app_exception.aex_code%type := 'OPTIMISTIC_LOCKING';
+
+    c_similar_username_password  constant app_data.app_exception.aex_code%type := 'SIMILAR_USERNAME_PASSWORD';
+
+    c_password_too_small         constant app_data.app_exception.aex_code%type := 'PASSWORD_TOO_SMALL';
+
+    c_banned_password            constant app_data.app_exception.aex_code%type := 'BANNED_PASSWORD';
+
+    c_missing_password_content   constant app_data.app_exception.aex_code%type := 'MISSING_PASSWORD_CONTENT';
+
+end pk_exception_codes;
+/
+
+sho err
+
+grant execute on app_exception.pk_exception_codes to public
+/

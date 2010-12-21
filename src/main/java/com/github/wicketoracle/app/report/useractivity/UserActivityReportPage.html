@@ -1,0 +1,55 @@
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd" >
+    <body>
+        <wicket:extend>
+                <div id="functional-content-body">
+
+                    <h1><wicket:message key="HeaderUserActivityReport">[User Activity Report Header]</wicket:message></h1>
+
+                    <div wicket:id="ViewUserActivity" id="searchResults">
+
+                        <table class="data-table">
+
+                            <thead>
+
+                                <tr>
+                                    <th wicket:id="LabelUsername">[Username]</th>
+                                    <th wicket:id="LabelSessionId">[Session id]</th>
+                                    <th wicket:id="LabelSessionSerial">[Serial#]</th>
+                                    <th wicket:id="LabelClientInfo">[Client info.]</th>
+                                    <th wicket:id="LabelClientIdentifier">[Client Identifier]</th>
+                                    <th wicket:id="LabelLogonTime">[Logon Time]</th>
+                                    <th wicket:id="LabelSessionStatus">[Session Status]</th>
+                                    <th wicket:id="LabelProgram">[Program]</th>
+                                    <th wicket:id="LabelModule">[Module]</th>
+                                    <th wicket:id="LabelAction">[Action]</th>
+                                    <th wicket:id="LabelTraceFileName">Trace file</th>
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+
+                                <tr wicket:id="UserActivityList">
+                                    <td><span wicket:id="username">[User name]</span></td>
+                                    <td><span wicket:id="sessionId">[Session Id]</span></td>
+                                    <td><span wicket:id="sessionSerialNum">[Session Serial#]</span></td>
+                                    <td><span wicket:id="clientInfo">[client information]</span></td>
+                                    <td><span wicket:id="clientIdentifier">[client identifier]</span></td>
+                                    <td><span wicket:id="logonTime">[logon time]</span></td>
+                                    <td><span wicket:id="sessionStatus">[session status]</span></td>
+                                    <td><span wicket:id="program">[program]</span></td>
+                                    <td><span wicket:id="module">[module]</span></td>
+                                    <td><span wicket:id="action">[action]</span></td>
+                                    <td><span wicket:id="traceFileName">[trace file name]</span></td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+                </div>
+
+        </wicket:extend>
+    </body>
+</html>

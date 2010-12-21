@@ -1,0 +1,35 @@
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd" >
+    <body>
+
+        <wicket:extend>
+
+            <div id="functional-content-body">
+
+                <h1 wicket:id="HeaderIntersectionListMgr">[List Intersection Header]</h1>
+
+                <form wicket:id="FormIntersectionList" dojoType="dijit.form.Form">
+
+                    <h5><wicket:message key="LabelParentData">[Choose parent data item]</wicket:message></h5>
+
+                    <select wicket:id="parentData">
+                        <option>[Parent data option]</option>
+                    </select>
+
+                    <br/>
+                    <br/>
+
+                    <div wicket:id="PaletteChildData">[Available - Selected Data Palette]</div>
+
+                    <br/>
+                    <br/>
+
+                    <button dojoType="dijit.form.Button" type="submit"><wicket:message key="ButtonSubmit">[Submit button message]</wicket:message></button>
+
+                </form>
+
+            </div>
+
+        </wicket:extend>
+
+    </body>
+</html>

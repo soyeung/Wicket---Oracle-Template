@@ -1,0 +1,77 @@
+<wicket:panel>
+
+<div id="ucp-config-form" dojoType="dijit.layout.ContentPane" title="Configure">
+
+    <h1><wicket:message key="HeaderUCPConfiguration">Message goes here</wicket:message></h1>
+
+    <form wicket:id="ucpConfigurationForm" dojoType="dijit.form.Form">
+
+        <table class="data-table">
+
+            <thead>
+
+                <tr>
+                    <th><wicket:message key="HeaderConfigParamTitle">[Config. Param. Header]</wicket:message></th>
+                    <th><wicket:message key="HeaderConfigValueTitle">[Config. Param. Value]</wicket:message></th>
+                    <th><wicket:message key="HeaderConfigUnitTitle">[Config. Param. Unit]</wicket:message></th>
+                    <th><wicket:message key="HeaderConfigNotesTitle">[Config. Param. Notes]</wicket:message></th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr>
+                    <th><wicket:message key="HeaderURL">[JDBC URL Header]</wicket:message></th>
+                    <td><span wicket:id="LabelURLValue">[JDBC URL Value]</span></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <th><wicket:message key="HeaderUCPPoolName">[UCP Pool Name Header]</wicket:message></th>
+                    <td><span wicket:id="LabelPoolNameValue">[UCP Pool Name Value]</span></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <th><wicket:message key="HeaderConnectionFactoryClass">[Connection Pool Class Header]</wicket:message></th>
+                    <td><span wicket:id="LabelConnectionFactoryClassValue">[Connection Pool Class ]</span></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <th><wicket:message key="HeaderUCPMaxCachedStatements">[Maximum number of cached statements per connection]</wicket:message></th>
+                    <td><input type="text" wicket:id="maxCachedStatements" dojoType="dijit.form.NumberTextBox" required="true"/></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <th><wicket:message key="HeaderUCPMinPoolSize">[Minimum number of connections header]</wicket:message></th>
+                    <td><input type="text" wicket:id="minPoolSize" dojoType="dijit.form.NumberTextBox" required="true"/></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <th><wicket:message key="HeaderUCPMaxPoolSize">[Maximum number of connections header]</wicket:message></th>
+                    <td><input type="text" wicket:id="maxPoolSize" dojoType="dijit.form.NumberTextBox" required="true"/></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+        <br/>
+
+        <button dojoType="dijit.form.Button" type="submit"><wicket:message key="ButtonSubmit">[Configure UCP Button]</wicket:message></button>
+
+    </form>
+
+</div>
+</wicket:panel>

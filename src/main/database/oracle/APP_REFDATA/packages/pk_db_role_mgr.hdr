@@ -1,0 +1,38 @@
+prompt create package header app_refdata.pk_db_role_mgr
+
+create or replace package app_refdata.pk_db_role_mgr
+
+    /**
+      * purpose : allow the registration of database roles with the application
+      *         : could act as the basis for a specialised screen for registering db roles
+      *         : with the application.
+      */
+
+as
+
+    /**
+      * name : pr_add_default_role
+      * desc : register a role which by convention will be enabled at the point in time that a user logs in. Any given user can have a maximum of 148 default roles.
+      */
+    procedure pr_add_default_role
+    (
+        p_dbrl_code in app_data.db_role.dbrl_code%type
+    ,   p_dbrl_name in app_data.db_role.dbrl_name%type
+    ,   p_dbrlc_id  in app_data.db_role_category.dbrlc_id%type
+    );
+
+    /**
+      * name : pr_add_non_default_role
+      * desc : register a role which by convention will be not enabled at the point in time that a user logs in. Any given user can have any number of these roles.
+      */
+    procedure pr_add_non_default_role
+    (
+        p_dbrl_code in app_data.db_role.dbrl_code%type
+    ,   p_dbrl_name in app_data.db_role.dbrl_name%type
+    ,   p_dbrlc_id  in app_data.db_role_category.dbrlc_id%type
+    );
+
+end pk_db_role_mgr;
+/
+
+sho err

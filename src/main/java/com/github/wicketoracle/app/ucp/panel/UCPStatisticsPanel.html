@@ -1,0 +1,101 @@
+<wicket:panel>
+<div id="ucp-stats" dojoType="dijit.layout.ContentPane" title="Statistics">
+
+    <h1><wicket:message key="HeaderUCPStatisticsPage">Message goes here</wicket:message></h1>
+
+    <table class="data-table">
+
+    <thead>
+
+        <tr>
+            <th><wicket:message key="HeaderUCPStatistics">[UCP Statistics Header]</wicket:message></th>
+            <th><wicket:message key="HeaderUCPStatisticsValue">[UCP Statistics Value]</wicket:message></th>
+            <th><wicket:message key="HeaderUCPStatisticsUnit">[UCP Statistics Unit]</wicket:message></th>
+        </tr>
+
+    </thead>
+
+        <tbody>
+
+            <tr>
+                <th><wicket:message key="HeaderAbandonedConnections">[Abandoned Connections Header]</wicket:message></th>
+                <td><span wicket:id="LabelAbandonedConnectionsValue">[Abandoned Connections Value]</span></td>
+                <td><wicket:message key="LabelConnectionUnit">[Abandoned Connections Unit]</wicket:message></td>
+            </tr>
+
+            <tr>
+                <th><wicket:message key="HeaderAvailableConnections">[Available Connections Header]</wicket:message></th>
+                <td><span wicket:id="LabelAvailableConnectionsValue">[Available Connections Value]</span></td>
+                <td><wicket:message key="LabelConnectionUnit">[Available Connections Unit]</wicket:message></td>
+            </tr>
+
+            <tr>
+                <th><wicket:message key="HeaderAverageBorrowedConnections">[Average Borrowed Connections]</wicket:message></th>
+                <td><span wicket:id="LabelAverageBorrowedConnectionsValue">[Average Borrowed Connections Value]</span></td>
+                <td><wicket:message key="LabelConnectionUnit">[Average Borrowed Connections Unit]</wicket:message></td>
+            </tr>
+
+            <tr>
+                <th><wicket:message key="HeaderAverageConnectionWaitTime">[Average Wait Time Header]</wicket:message></th>
+                <td><span wicket:id="LabelAverageConnectionWaitTimeValue">[Average Wait Time Value]</span></td>
+                <td><wicket:message key="LabelMillisecondUnit">[Average Wait Time Unit]</wicket:message></td>
+            </tr>
+
+            <tr>
+                <th><wicket:message key="HeaderBorrowedConnections">[Borrowed Connections Header]</wicket:message></th>
+                <td><span wicket:id="LabelBorrowedConnectionsValue">[Borrowed Connections Value]</span></td>
+                <td><wicket:message key="LabelConnectionUnit">[Borrowed Connections Unit]</wicket:message></td>
+            </tr>
+
+            <tr>
+                <th><wicket:message key="HeaderConnectionsClosed">[Connections Closed Header]</wicket:message></th>
+                <td><span wicket:id="LabelConnectionsClosedValue">[Connections Closed Value]</span></td>
+                <td><wicket:message key="LabelConnectionUnit">[Closed Connections Unit]</wicket:message></td>
+            </tr>
+
+            <tr>
+                <th><wicket:message key="HeaderConnectionsCreated">[Connections Created Header]</wicket:message></th>
+                <td><span wicket:id="LabelConnectionsCreatedValue">[Connections Created Value]</span></td>
+                <td><wicket:message key="LabelConnectionUnit">[Connections Created Unit]</wicket:message></td>
+            </tr>
+
+            <tr>
+                <th><wicket:message key="HeaderCumulativeConnectionsBorrowed">[Cumulative Connections Borrowed Header]</wicket:message></th>
+                <td><span wicket:id="LabelCumulativeConnectionsBorrowedValue">[Cumulative Connections Borrowed Header]</span></td>
+                <td><wicket:message key="LabelConnectionUnit">[Cumulative Connections Unit]</wicket:message></td>
+            </tr>
+
+            <tr>
+                <th><wicket:message key="HeaderCumulativeConnectionsReturned">[Cumulative Connections Returned Header]</wicket:message></th>
+                <td><span wicket:id="LabelCumulativeConnectionsReturnedValue">[Cumulative Connections Returned Header]</span></td>
+                <td><wicket:message key="LabelConnectionUnit">[Cumulative Connections Unit]</wicket:message></td>
+            </tr>
+
+            <tr>
+                <th><wicket:message key="HeaderCumulativeConnectionUseTime">[CC.Use Time Header]</wicket:message></th>
+                <td><span wicket:id="LabelCumulativeConnectionsUseTimeValue">[CC. Use Time Value]</span></td>
+                <td><wicket:message key="LabelMillisecondUnit">[CC. Use Time Unit]</wicket:message></td>
+            </tr>
+
+            <tr>
+                <th><wicket:message key="HeaderCumulativeConnectionWaitTime">[CC. Wait Time Header]</wicket:message></th>
+                <td><span wicket:id="LabelCumulativeConnectionsWaitTimeValue">[CC. Wait Time Value]</span></td>
+                <td><wicket:message key="LabelMillisecondUnit">[CC. Wait Time unit]</wicket:message></td>
+            </tr>
+
+            <tr>
+                <th><wicket:message key="HeaderNumberLabelledConnections">[Num. Labelled Connections Header]</wicket:message></th>
+                <td><span wicket:id="LabelNumberLabelledConnectionsValue">[Num. Labelled Connections Value]</span></td>
+                <td><wicket:message key="LabelConnectionUnit">[Num. Labelled Connections Unit]</wicket:message></td>
+            </tr>
+
+            <tr>
+                <th><wicket:message key="HeaderPeakConnections">[Peak Connections Header]</wicket:message></th>
+                <td><span wicket:id="LabelPeakConnectionsValue">[Peak Connections Value]</span></td>
+                <td><wicket:message key="LabelConnectionUnit">[Peak Connections Unit]</wicket:message></td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+</wicket:panel>

@@ -1,0 +1,31 @@
+prompt creating app_utility.pk_schema_names
+
+create or replace package app_utility.pk_schema_names
+
+  /**
+   * purpose     : a list of global constants defining the database schema that constitute the application.
+   */
+
+as
+
+    c_data_schema             constant sys.dba_users.username%type := 'APP_DATA';
+
+    c_data_registration       constant sys.dba_users.username%type := 'APP_DATA_REGISTRATION';
+
+    c_question_schema         constant sys.dba_users.username%type := 'APP_QUESTION';
+
+    c_refdata_schema          constant sys.dba_users.username%type := 'APP_REFDATA';
+
+    c_report_schema           constant sys.dba_users.username%type := 'APP_REPORT';
+
+    c_utility_schema          constant sys.dba_users.username%type := 'APP_UTILITY';
+
+    c_user_management_schema  constant sys.dba_users.username%type := 'APP_USER';
+
+end pk_schema_names;
+/
+
+sho err
+
+grant execute on app_utility.pk_schema_names to public
+/

@@ -1,0 +1,31 @@
+CREATE OR REPLACE PACKAGE app_runstats.pkRunstats
+AS
+
+  /* ****************************************************************
+   * Name: prStart
+   * Desc: Run as a precursor to performance testing
+   * **************************************************************** */
+
+  PROCEDURE prStart;
+
+  /* ****************************************************************
+   * Name: prMiddle
+   * Desc: Run after approach number 1 has completed
+   * **************************************************************** */
+
+  PROCEDURE prMiddle;
+
+  /* ****************************************************************
+   * Name: prStop
+   * Desc: Run after approach number 2 has completed
+   * **************************************************************** */
+
+  PROCEDURE prStop
+  ( 
+    p_difference_threshold IN NUMBER DEFAULT 0 
+  );
+
+END pkRunstats;
+/
+
+SHO ERR

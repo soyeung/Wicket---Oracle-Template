@@ -1,0 +1,23 @@
+prompt creating package header app_report.pk_least_privileges_report
+
+create or replace package app_report.pk_least_privileges_report
+
+    /**
+      * purpose : provide a report showing object privileges enjoyed by
+      *         : schema which aren't necessarily required. provides a
+      *         : starting point when trying to enforce the principle of
+      *         : least principle
+      */
+
+as
+
+    /**
+      * name : fn_get_report
+      */
+    function fn_get_report
+    return sys_refcursor;
+
+end pk_least_privileges_report;
+/
+
+sho err

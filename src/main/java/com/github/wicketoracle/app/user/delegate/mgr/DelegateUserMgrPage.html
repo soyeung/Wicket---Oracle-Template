@@ -1,0 +1,99 @@
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+    <body>
+
+        <wicket:extend>
+
+            <div id="functional-content-body">
+
+                <h1><wicket:message key="HeaderStandardUserMgr">[Standard User Management Page Header]</wicket:message></h1>
+
+                <div id="searchParameters">
+
+                    <h2><wicket:message key="HeaderUserSearch">[User Search Header]</wicket:message></h2>
+
+                    <form wicket:id="searchUserForm" dojoType="dijit.form.Form">
+
+                        <h5><wicket:message key="LabelUsernameCriteria">[Search Username Label]</wicket:message></h5>
+                        <input type="text" wicket:id="username" dojoType="dijit.form.TextBox" required="false"/>
+
+                        <h5><wicket:message key="LabelIsAccountEnabledCriteria">[Search by enabled account]</wicket:message></h5>
+                        <select wicket:id="isEnabled" dojoType="dijit.form.FilteringSelect" required="false">
+                            <option>[Enabled account search option]</option>
+                        </select>
+
+                        <h5><wicket:message key="LabelIsTracingEnabledCriteria">[Search by traced account]</wicket:message></h5>
+                        <select wicket:id="isTracingEnabled" dojoType="dijit.form.FilteringSelect" required="false">
+                            <option>[Traced account search option]</option>
+                        </select>
+
+                        <h5><wicket:message key="LabelDBRoleCriteria">[Search by User Role]</wicket:message></h5>
+                        <select wicket:id="dbRole" dojoType="dijit.form.FilteringSelect" required="false">
+                            <option>[DB Role search option]</option>
+                        </select>
+
+                        <br/>
+                        <br/>
+
+                        <button dojoType="dijit.form.Button" type="submit"><wicket:message key="ButtonSubmitSearch">[Submit Search Button]</wicket:message></button>
+
+                    </form>
+
+                </div>
+
+                <div id="searchResults">
+
+                    <form wicket:id="mgrForm" dojoType="dijit.form.Form">
+
+                        <table class="data-table">
+
+                            <thead>
+                                <tr>
+                                    <th wicket:id="LabelUsername">[Username header]</th>
+                                    <th wicket:id="LabelProfile">[Profile header]</th>
+                                    <th wicket:id="LabelIsEnabled">['Is enabled?' header]</th>
+                                    <th wicket:id="LabelIsTracingEnabled">['Is tracing enabled?' header]</th>
+                                    <th wicket:id="LabelDateCreated">[Date user created header]</th>
+                                    <th wicket:id="LabelChangeRoles">[Modify roles link]</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                <tr wicket:id="UserList">
+
+                                    <td wicket:id="username">[Username]</td>
+                                    <td wicket:id="profile">[Profile]</td>
+                                    <td>
+                                        <select wicket:id="isEnabled" dojoType="dijit.form.FilteringSelect" required="true">
+                                            <option>[Is enabled]</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select wicket:id="isTracingEnabled" dojoType="dijit.form.FilteringSelect" required="true">
+                                            <option>[Is tracing enabled]</option>
+                                        </select>
+                                    </td>
+                                    <td wicket:id="dateCreated">[User creation date]</td>
+                                    <td><a wicket:id="LinkChangeRoles"><wicket:message key="LinkChangeRoles">[Change user roles]</wicket:message></a></td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                        <br/>
+                        <br/>
+
+                        <button dojoType="dijit.form.Button" type="submit"><wicket:message key="ButtonSubmitMgrForm">[Modify Users Button]</wicket:message></button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </wicket:extend>
+
+    </body>
+</html>

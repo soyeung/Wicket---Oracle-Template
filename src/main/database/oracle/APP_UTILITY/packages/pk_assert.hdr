@@ -1,0 +1,35 @@
+prompt creating package app_utility.pk_assert
+
+create or replace package app_utility.pk_assert
+
+    /**
+      * purpose : utilities which can be used evaluate conditions which occur throughout the application
+      */
+
+as
+
+    /**
+      * name   : pr_assert_condition
+      * desc   : evaluate a condition and raise an exception if it evaluates to false. we are optimistic that the condition evaluates to true: if
+      *        : this isn't the case then this is logged as an error and an exception is raised. 
+      * params : p_condition -> the boolean condition which can be evaluated to either true or false.
+      *        : p_aex_code -> the code of one of the registered application specific exceptions. see app_exception.pk_exception_codes.
+      *        : p_exception_message -> the descriptive message which will be raised if p_condition evaluates to false.
+      *        : p_invoker -> details of what has requested that p_condition be checked. typically this will be package/procedure name.
+      */
+
+    procedure pr_assert_condition
+    (
+        p_condition         in boolean
+    ,   p_aex_code          in app_data.app_exception.aex_code%type
+    ,   p_exception_message in varchar2
+    ,   p_invoker           in varchar2
+    );
+
+end pk_assert;
+/
+
+sho err
+
+grant execute on app_utility.pk_assert to public
+/

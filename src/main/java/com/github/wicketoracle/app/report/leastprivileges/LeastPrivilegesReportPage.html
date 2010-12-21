@@ -1,0 +1,44 @@
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd" >
+    <body>
+        <wicket:extend>
+                <div id="functional-content-body">
+
+                    <h1><wicket:message key="HeaderLeastPrivilegesReport">[Least Privileges Header]</wicket:message></h1>
+
+                    <h2><wicket:message key="HeaderSynopsis">[Report synopsis]</wicket:message></h2>
+
+                    <div wicket:id="ViewLeastPrivileges" id="searchResults">
+
+                        <table class="data-table">
+
+                            <thead>
+
+                                <tr>
+                                    <th wicket:id="LabelPrivilegeHolder">[Privilege Holder]</th>
+                                    <th wicket:id="LabelObjectOwner">[Object Owner]</th>
+                                    <th wicket:id="LabelObjectName">[Object Name]</th>
+                                    <th wicket:id="LabelGrantedPrivilege">[Granted Privilege]</th>
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+
+                                <tr wicket:id="LeastPrivilegesList">
+                                    <td wicket:id="privilegeHolder">[Privilege grantee]</td>
+                                    <td wicket:id="objectOwner">[Object Owner]</td>
+                                    <td wicket:id="objectName">[Object Name]</td>
+                                    <td wicket:id="grantedPrivilege">[Granted Privilege]</td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+        </wicket:extend>
+    </body>
+</html>

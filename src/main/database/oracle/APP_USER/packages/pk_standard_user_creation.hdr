@@ -1,0 +1,49 @@
+prompt creating package pk_standard_user_creation
+
+create or replace package app_user.pk_standard_user_creation
+
+    /**
+      * purpose : api providing the facility to create new standard database users.
+      *         : a 'standard' application user is one which allows a physical user of the
+      *         : application to authentication and use it.
+      */
+
+as
+
+    /**
+      * name : fn_get_list_ref_data
+      * desc : provides data which can populate the form used to specify the qualities of the user to be created.
+      */
+
+    function fn_get_list_ref_data
+    return sys_refcursor;
+
+    /**
+      * name   : pr_create_standard_user
+      * desc   : create a new standard user. 'users' are true users in the sense
+      *        : of oracle - the concept of the 'one big application user' is has
+      *        : been rejected. this procedure ensures that the successfully : created user will:
+      *        :
+      *        : have been granted a set of database roles;
+      *        : will have had sql*plus access restricted;
+      *        : will have registered a proxy user;
+      * params : p_username -> the username of the user to be created.
+      *        : p_password -> the password of the user to be created.
+      *        : p_uty_id   -> the user type of the user to be created. a user type is an application defined collection of database roles.
+      *        : p_aurp_id  -> the oracle profile which will be assigned to the user being created. a profile controls password security.
+      *        : p_lng_id   -> the preferred language of the user being created.
+      */
+
+    procedure pr_create_standard_user
+    (
+        p_username in app_data.v_app_user.aur_username%type
+    ,   p_password in varchar2
+    ,   p_uty_id   in app_data.v_usr_rd_uty.uty_id%type
+    ,   p_aurp_id  in app_data.v_usr_rd_aurp.aurp_id%type
+    ,   p_lng_id   in app_data.v_usr_rd_lng.lng_id%type
+    );
+
+end pk_standard_user_creation;
+/
+
+sho err

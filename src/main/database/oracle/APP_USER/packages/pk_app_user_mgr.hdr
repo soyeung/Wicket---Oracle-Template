@@ -1,0 +1,39 @@
+prompt creating package pk_app_user_mgr
+
+create or replace package app_user.pk_app_user_mgr
+
+    /**
+      * purpose : api providing the facility to manage existing users. this package should
+      *         : not be called directly from the application, instead packages acting as
+      *         : facades should be created which call this package. these facades should be
+      *         : called from the application. see app_user.pk_standard_app_user_mgr as an
+      *         : example.
+      */
+
+as
+
+    /**
+      * name : pr_disable_user
+      * desc : lock the account of user which has been registered with the application.
+      */
+
+    procedure pr_disable_user
+    (
+        p_username in app_data.v_app_user.aur_username%type
+    );
+
+    /**
+      * name   : pr_enable_user
+      * desc   : unlock the account of user which has been registered with the application.
+      * params : p_username -> the username of the user whose account will be unlocked.
+      */
+
+    procedure pr_enable_user
+    (
+        p_username in app_data.v_app_user.aur_username%type
+    );
+
+end pk_app_user_mgr;
+/
+
+sho err

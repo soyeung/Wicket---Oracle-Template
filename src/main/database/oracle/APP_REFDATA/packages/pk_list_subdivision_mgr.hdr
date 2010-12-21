@@ -1,0 +1,39 @@
+prompt creating package app_refdata.pk_list_subdivision_mgr
+
+create or replace package app_refdata.pk_list_subdivision_mgr
+authid current_user
+
+    /**
+      * purpose     : provides an interface through which list subdivisions can be managed via
+      *             : an application. list subdivisions are subject to insert and delete operations.
+      */
+
+as
+
+    /**
+      * name : fn_get_data
+      * desc : provide a dataset describing the current content of the data structure being managed.
+      */
+
+    function fn_get_data
+    (
+        p_rds_id in app_data.v_subdiv_ref_data.rds_id%type
+    )
+    return sys_refcursor;
+
+    /**
+      * name   : pr_update
+      * desc   : attempt to apply changes specified by the user to the data structure being managed.
+      * params : p_dataset -> the set of changes requested to the data structure under management.
+      */
+
+    procedure pr_update
+    (
+        p_rds_id  in app_data.v_subdiv_ref_data.rds_id%type
+    ,   p_dataset in app_refdata.tty_subdiv_ref_data
+    );
+
+end pk_list_subdivision_mgr;
+/
+
+sho err

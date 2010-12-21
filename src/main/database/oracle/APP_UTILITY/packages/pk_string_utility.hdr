@@ -1,0 +1,56 @@
+prompt creating package pk_string_utility
+
+create or replace package app_utility.pk_string_utility
+
+    /**
+      * purpose : utilities which can be used to process strings.
+      */
+
+as
+
+    /**
+      * name   : fn_is_blank_string
+      * desc   : examine a string to determine whether or not it is blank.
+      * params :
+      *        : p_string -> the string which will be checked
+      */
+
+    function fn_is_blank_string
+    (
+        p_string in varchar2
+    )
+    return boolean
+    deterministic;
+
+    /**
+      * name   : fn_get_comma_delimited_string
+      * desc   : aggregates together the contents of set of strings, and returns a comma delimited string.
+      * params : p_string_list -> the string list whose contents will be aggregated together.
+      */
+
+    function fn_get_comma_delimited_string
+    (
+        p_string_list in app_utility.tty_string
+    )
+    return varchar2;
+
+    /**
+      * name   : fn_reduce_string
+      * desc   : returns a string which has had characters not featuring in a white list stripped out.
+      * params : p_string -> the string to be transformed
+      */
+
+    function fn_reduce_string
+    (
+        p_string in varchar2
+    )
+    return varchar2
+    deterministic;
+
+end pk_string_utility;
+/
+
+sho err
+
+grant execute on app_utility.pk_string_utility to public
+/

@@ -1,0 +1,49 @@
+prompt creating package pk_authentication_report
+
+create or replace package app_report.pk_authentication_report
+
+    /**
+      * purpose     : provides all of the data required to run the authentication report. this
+      *             : includes both the report dataset and data used to populate parameter
+      *             : forms. this report provides details of successful logons to the
+      *             : application.
+      */
+
+as
+
+    /**
+      * name : fn_get_list_ref_data
+      * desc : provides data which can populate a report parameter form. this
+      *      : data can be used to refine the results returned by the report.
+      */
+
+    function fn_get_list_ref_data
+    return sys_refcursor;
+
+    /**
+      * name   : fn_get_report
+      * desc   : provides a dataset containing the results of the report.
+      * params : p_aur_id             -> the 'id' of a user whose activity will be reported on. 'null' signals no restriction.
+      *        : p_start_lgn_time     -> the start of the reporting period. the report will consider the whole of the
+      *        :                         day specified (ie from 00:00:00).
+      *        :                         'null' signals no restriction.
+      *        : p_end_lgn_time       -> the end of the reporting period. the report will consider the whole of the
+      *        :                         day specified (ie to 23:59:59). 'null' signals no restriction.
+      *        : p_lower_record_limit -> used when paginating through the data.
+      *        : p_upper_record_limit -> used when paginating through the data.
+      */
+
+    function fn_get_report
+    (
+      p_aur_id             in app_data.v_app_user.aur_id%type
+    , p_start_lgn_time     in app_data.v_authentication_log.lgn_time%type
+    , p_end_lgn_time       in app_data.v_authentication_log.lgn_time%type
+    , p_lower_record_limit in int                                         default null
+    , p_upper_record_limit in int                                         default null
+    )
+    return sys_refcursor;
+
+end pk_authentication_report;
+/
+
+sho err

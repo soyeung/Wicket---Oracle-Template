@@ -1,0 +1,38 @@
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd" >
+    <body>
+        <wicket:extend>
+                <div id="functional-content-body">
+
+                    <h1><wicket:message key="HeaderTablesWithoutPKReport">[Tables without Primary Keys Header]</wicket:message></h1>
+
+                    <div wicket:id="ViewTablesWithoutPK" id="searchResults">
+
+                        <table class="data-table">
+
+                            <thead>
+
+                                <tr>
+                                    <th wicket:id="LabelTableOwner">[Table Owner]</th>
+                                    <th wicket:id="LabelTableName">[Table Name]</th>
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+
+                                <tr wicket:id="TablesWithoutPKList">
+                                    <td><span wicket:id="tableOwner">[Table owner]</span></td>
+                                    <td><span wicket:id="tableName">[Table name]</span></td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+        </wicket:extend>
+    </body>
+</html>

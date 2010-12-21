@@ -1,0 +1,27 @@
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd" >
+
+    <body>
+
+        <wicket:extend>
+
+            <div id="functional-content-body">
+                <h1><wicket:message key="HeaderDataManager">[Data manager header]</wicket:message></h1>
+
+                <form wicket:id="FormDataTree">
+
+                    <h2><wicket:message key="HeaderInstructions">[Data manager instructions]</wicket:message></h2>
+
+                    <div wicket:id="PanelTreeControl">[Data Tree Control Panel]</div>
+
+                    <div wicket:id="DataTree">[Data Tree]</div>
+
+                    <button wicket:id="ButtonSubmit" dojoType="dijit.form.Button" type="submit"><wicket:message key="ButtonSubmit">[Submit button]</wicket:message></button>
+
+                </form>
+
+            </div>
+
+        </wicket:extend>
+    </body>
+
+</html>

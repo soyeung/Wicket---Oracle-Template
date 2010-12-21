@@ -1,0 +1,32 @@
+prompt creating package header app_report.pk_user_privileges_report
+
+create or replace package app_report.pk_user_privileges_report
+
+    /**
+      * purpose : provide a report showing all of the object privileges enjoyed by
+      *         : a selected user - granted both directly and indirectly
+      */
+
+as
+
+    /**
+      * name : fn_get_list_ref_data
+      * desc : provides data which can populate the user search parameter form.
+      *      : this data can be used to refine the results returned by the user search.
+      */
+    function fn_get_list_ref_data
+    return sys_refcursor;
+
+    /**
+      * name : fn_get_report
+      */
+    function fn_get_report
+    (
+        p_aur_id in app_data.v_usr_rd_saur.aur_id%type
+    )
+    return sys_refcursor;
+
+end pk_user_privileges_report;
+/
+
+sho err

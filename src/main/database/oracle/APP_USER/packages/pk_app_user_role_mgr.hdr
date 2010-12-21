@@ -1,0 +1,41 @@
+prompt creating package pk_app_user_role_mgr
+
+create or replace package app_user.pk_app_user_role_mgr
+
+    /**
+      * purpose : api providing the facility to manage the database roles assigned to
+      *         : registered users of the application.
+      */
+
+as
+
+    /**
+      * name   : fn_get_all_roles
+      * desc   : provides a dataset detailing all manageable roles (see app_data.manageable_db_role), and of those, which are
+      *        : assigned to the user with the 'id' of 'p_aur_id'.
+      * params : p_aur_id -> the 'id' of the user whose assigned roles are presently under management.
+      */
+
+    function fn_get_all_roles
+    (
+        p_aur_id in app_data.v_app_user.aur_id%type
+    )
+    return sys_refcursor;
+
+    /**
+      * name   : pr_update_user_roles
+      * desc   : assign / revoke database roles to / from a single user as specified via the application.
+      * params : p_aur_id  -> the 'id' of the user whose assigned roles are presently under management.
+      *        : p_dataset -> the set specifying the changes requested to the database roles assigned to the user being managed.
+      */
+
+    procedure pr_update_user_roles
+    (
+        p_aur_id  in app_data.v_app_user.aur_id%type
+    ,   p_dataset in app_user.tty_db_role
+    );
+
+end pk_app_user_role_mgr;
+/
+
+sho err

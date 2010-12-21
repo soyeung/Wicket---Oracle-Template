@@ -1,0 +1,50 @@
+prompt creating package pk_ref_data_mgr
+
+create or replace package app_refdata.pk_ref_data_mgr
+
+    /*
+      * purpose : allows management of application reference data.
+      */
+
+as
+
+    /**
+      * name : fn_get_data_structure_list
+      * desc : return a hierarchical list of all reference data structures registered as being manageable within the system, for which the
+      *      : current user has permission to manage.
+      */
+
+    function fn_get_data_structure_list
+    return sys_refcursor;
+
+    /**
+      * name   : fn_is_editable_data_structure
+      * desc   : indicates whether or not a reference data structure registered
+      *        : with the management facility has been designated as non-editable.
+      * params : p_rds_id -> the id (from app_data.ref_data_structure.rds_id)
+      */
+
+    function fn_is_editable_data_structure
+    (
+        p_rds_id in app_data.v_editable_ref_data_structure.rds_id%type
+    )
+    return boolean;
+
+    /**
+      * name   : fn_get_list_metadata
+      * desc   : provides a dataset containing information about the constraints
+      *        : (such as the maximum length of a text field) which have been
+      *        : applied to a list. this information can be used by an appliction
+      *        : to verify user input prior to in reaching the database.
+      */
+
+  function fn_get_list_metadata
+  (
+    p_rds_id in app_data.v_ref_data_structure.rds_id%type
+  )
+  return sys_refcursor;
+
+end pk_ref_data_mgr;
+/
+
+sho err

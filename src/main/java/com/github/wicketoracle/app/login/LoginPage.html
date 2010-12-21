@@ -1,0 +1,50 @@
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd" >
+
+    <body>
+
+        <wicket:extend>
+
+            <div id="functional-content-body">
+
+                <div class="input-form">
+
+                    <h1><wicket:message key="HeaderLogin">[Login Header]</wicket:message></h1>
+                    <h2><wicket:message key="HeaderInstruction">[Login Instructions]</wicket:message></h2>
+
+                    <form wicket:id="loginForm" dojoType="dijit.form.Form">
+
+                        <h5 class="form-item-label">
+                            <span>
+                                <wicket:message key="LabelUsername">[Username Label]</wicket:message>
+                            </span>
+                        </h5>
+
+                        <input type="text" wicket:id="username" dojoType="dijit.form.ValidationTextBox" required="true"/>
+
+                        <br/>
+
+                        <h5 class="form-item-label">
+                            <span>
+                                <wicket:message key="LabelPassword">[Password Label]</wicket:message>
+                            </span>
+                        </h5>
+
+                        <input type="password" wicket:id="password" dojoType="dijit.form.ValidationTextBox" required="true"/>
+
+                        <br/>
+
+                        <br/>
+
+                        <button dojoType="dijit.form.Button" type="submit"><wicket:message key="ButtonSubmit">Message goes here</wicket:message></button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </wicket:extend>
+
+    </body>
+
+</html>

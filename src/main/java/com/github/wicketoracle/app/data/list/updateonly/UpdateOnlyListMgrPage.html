@@ -1,0 +1,48 @@
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd" >
+    <body>
+
+        <wicket:extend>
+
+                <div id="functional-content-body">
+
+                    <h1 wicket:id="HeaderUpdateListMgr">[Update only list header]</h1>
+
+                    <form wicket:id="FormUpdateList" dojoType="dijit.form.Form">
+
+                        <ul>
+                            <li wicket:id="LabelMaximumItemLength">[Item name - maximum length message]</li>
+                        </ul>
+
+                        <table class="data-table">
+
+                            <thead>
+                                <tr>
+                                    <th wicket:id="LabelItemName">[Item name]</th>
+                                    <th wicket:id="LabelIsVisible">[Is item visible]</th>
+                                    <th wicket:id="LabelItemOrder">[Item order]</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr wicket:id="DataList">
+                                    <td><input wicket:id="itemName" dojoType="dijit.form.ValidationTextBox" required="true"/></td>
+                                    <td>
+                                        <select wicket:id="itemIsVisible" dojoType="dijit.form.FilteringSelect" required="true">
+                                            <option>[Yes/No]</option>
+                                        </select>
+                                    </td>
+                                    <td><input wicket:id="itemOrder" dojoType="dijit.form.ValidationTextBox" required="true"/></td>
+                                </tr>
+                            </tbody>
+
+                        </table>
+
+                        <button dojoType="dijit.form.Button" type="submit"><wicket:message key="ButtonSubmit">[Submit button message]</wicket:message></button>
+
+                    </form>
+                </div>
+
+        </wicket:extend>
+
+    </body>
+</html>

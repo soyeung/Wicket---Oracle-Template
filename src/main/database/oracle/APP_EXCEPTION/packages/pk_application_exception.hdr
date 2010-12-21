@@ -1,0 +1,41 @@
+prompt creating package pk_application_exception
+
+create or replace package app_exception.pk_application_exception
+
+    /**
+      * purpose : to provide a mechanism to consistently throw exceptions.
+      */
+
+as
+
+    /**
+      * name   : pr_raise_exception
+      * desc   : raise an exception registered with the exception framework.
+      * params : p_code -> the code referencing a custom exception. see column app_data.app_exception.aex_code.
+      */
+
+    procedure pr_raise_exception
+    (
+        p_code in app_data.app_exception.aex_code%type
+    );
+
+    /**
+      * name   : pr_raise_exception
+      * desc   : raise an exception registered with the exception framework.
+      * params : p_code -> the code referencing a custom exception. see column app_data.app_exception.aex_code.
+      *        : p_message -> the message which will be raised with the exception.
+      */
+
+    procedure pr_raise_exception
+    (
+        p_code    in app_data.app_exception.aex_code%type
+    ,   p_message in varchar2
+    );
+
+end pk_application_exception;
+/
+
+sho err
+
+grant execute on app_exception.pk_application_exception to public
+/

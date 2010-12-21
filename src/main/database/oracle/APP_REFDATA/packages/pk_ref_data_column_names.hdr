@@ -1,0 +1,57 @@
+prompt creating package pk_ref_data_column_names
+
+create or replace package app_refdata.pk_ref_data_column_names
+
+    /**
+      * purpose : a list of global constants which define the makeup of reference data - data sets.
+      *         :
+      *         : these constants are used in the dynamic generation
+      *         : of sql during reference data management.
+      */
+
+as
+
+    c_id_alias                    constant varchar2(2  char) := 'id';
+
+    c_id_suffix                   constant varchar2(3  char) := '_id';
+
+    c_dataset_key_alias           constant varchar2(10 char) := 'datasetkey';
+
+    c_dataset_key_suffix          constant varchar2(10 char) := '_alias';
+
+    c_code_alias                  constant varchar2(4  char) := 'code';
+
+    c_code_suffix                 constant varchar2(5  char) := '_code';
+
+    c_name_alias                  constant varchar2(4  char) := 'name';
+
+    c_name_suffix                 constant varchar2(5  char) := '_name';
+
+    c_is_user_visible_alias       constant varchar2(15 char) := 'is_user_visible';
+
+    c_is_user_visible_suffix      constant varchar2(16 char) := '_is_user_visible';
+
+    c_order_alias                 constant varchar2(8  char) := 'ordering';
+
+    c_order_suffix                constant varchar2(9  char) := '_order';
+
+    c_include_alias               constant varchar2(15 char) := 'is_included';
+
+    c_include_suffix              constant varchar2(15 char) := '_is_included';
+
+    c_created_date_alias          constant varchar2(13 char) := 'created_date';
+
+    c_created_date_suffix         constant varchar2(13 char) := '_created_date';
+
+    c_updated_by_alias            constant varchar2(11 char) := 'updated_by';
+
+    c_updated_by_suffix           constant varchar2(11 char) := '_updated_by';
+
+    c_updated_date_alias          constant varchar2(13 char) := 'updated_date';
+
+    c_updated_date_suffix         constant varchar2(13 char) := '_updated_date';
+
+end pk_ref_data_column_names;
+/
+
+SHO ERR

@@ -1,0 +1,48 @@
+prompt creating package pk_set_app_user_roles
+
+create or replace package app_user.pk_set_app_user_roles
+authid current_user
+
+    /**
+      * purpose : allows the application to enable non default roles at run time.
+      */
+
+as
+
+    /**
+      * name : pr_disable_roles
+      * desc : disables all roles allocated to the current user other than the default roles.
+      */
+
+
+    procedure pr_disable_roles;
+
+    /**
+      * name   : pr_enable_role
+      * desc   : enables a single role
+      * params : p_role -> the role being enabled.
+      */
+
+    procedure pr_enable_role
+    (
+        p_role in varchar2
+    );
+
+    /**
+      * name   : pr_enable_roles
+      * desc   : enables a multiple roles
+      * params : p_role_list -> a list of roles to be enabled.
+      */
+
+    procedure pr_enable_roles
+    (
+        p_role_list in app_utility.tty_string
+    );
+
+end pk_set_app_user_roles;
+/
+
+sho err
+
+grant execute on app_user.pk_set_app_user_roles to public
+/

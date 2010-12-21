@@ -1,0 +1,59 @@
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd" >
+    <body>
+        <wicket:extend>
+                <div id="functional-content-body">
+
+                    <div class="input-form">
+
+                        <h1><wicket:message key="HeaderCreateUser">[Create User Header]</wicket:message></h1>
+
+                        <form wicket:id="createUserForm" dojoType="dijit.form.Form">
+
+                        <h2><wicket:message key="HeaderInstructions">[Instructions]</wicket:message></h2>
+
+                            <h3><wicket:message key="HeaderPasswordStandard">[Password Standard]</wicket:message></h3>
+                            <ul>
+                                <li><wicket:message key="LabelUsernameLength">[Username length]</wicket:message></li>
+                                <li><wicket:message key="LabelPasswordLength">[Password Length]</wicket:message></li>
+                                <li><wicket:message key="LabelPasswordComparison">[Password comparison]</wicket:message></li>
+                                <li><wicket:message key="LabelPasswordComplexity">[Password complexity]</wicket:message></li>
+                            </ul>
+
+                            <h5><wicket:message key="LabelUsernamePrompt">[Prompt for username]</wicket:message></h5>
+                            <input type="text" wicket:id="username" dojoType="dijit.form.ValidationTextBox" required="true"/>
+
+                            <h5><wicket:message key="LabelPasswordPrompt">[Prompt for password]</wicket:message></h5>
+                            <input type="password" wicket:id="password" dojoType="dijit.form.ValidationTextBox" required="true"/>
+
+                            <h5><wicket:message key="LabelPasswordConfirmationPrompt">[Confirm password]</wicket:message></h5>
+                            <input type="password" wicket:id="passwordConfirmation" dojoType="dijit.form.ValidationTextBox" required="true"/>
+
+                            <h5><wicket:message key="LabelUserTypePrompt">[Prompt for user type]</wicket:message></h5>
+                            <select wicket:id="userType" dojoType="dijit.form.FilteringSelect" required="true">
+                                <option>[User type option]</option>
+                            </select>
+
+                            <h5><wicket:message key="LabelUserProfile">[Prompt for user profile]</wicket:message></h5>
+                            <select wicket:id="userProfile" dojoType="dijit.form.FilteringSelect" required="true">
+                                <option>[User profile option]</option>
+                            </select>
+
+                            <h5><wicket:message key="LabelUserLocalePrompt">[Prompt for user locale]</wicket:message></h5>
+                            <select wicket:id="userLocale" dojoType="dijit.form.FilteringSelect" required="true">
+                                <option>[User locale option]</option>
+                            </select>
+
+                            <br/>
+                            <br/>
+
+                            <button dojoType="dijit.form.Button" type="submit"><wicket:message key="ButtonSubmit">[Submit button message]</wicket:message></button>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+        </wicket:extend>
+    </body>
+</html>

@@ -1,0 +1,41 @@
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd" >
+    <body>
+        <wicket:extend>
+            <div id="functional-content-body">
+
+                <h1><span wicket:id="HeaderChangeRoles">[Change Roles Header]</span></h1>
+
+                <div id="searchResults">
+
+                    <form wicket:id="FormRoleMgr" dojoType="dijit.form.Form">
+
+                        <table class="data-table">
+
+                            <thead>
+                                <tr>
+                                    <th><wicket:message key="HeaderRoleCategory">[Role Category Header]</wicket:message></th>
+                                    <th><wicket:message key="HeaderRoleDescription">[Role Description]</wicket:message></th>
+                                    <th><wicket:message key="HeaderIsRoleAssigned">[Is Role Assigned to User(?) Header]</wicket:message></th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr wicket:id="RoleList">
+                                    <td wicket:id="roleCategory">[Role Category]</td>
+                                    <td wicket:id="roleDescr">[Role Description]</td>
+                                    <td><input type="checkbox" wicket:id="assigned" dojoType="dijit.form.CheckBox"/></td>
+                                </tr>
+                            </tbody>
+
+                        </table>
+
+                        <button dojoType="dijit.form.Button" type="submit"><wicket:message key="ButtonSubmit">[Submit button message]</wicket:message></button>
+
+                    </form>
+
+                </div>
+
+            </div>
+        </wicket:extend>
+    </body>
+</html>

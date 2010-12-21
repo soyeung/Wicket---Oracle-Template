@@ -1,0 +1,22 @@
+prompt creating package app_report.pk_reporting
+
+create or replace package app_report.pk_reporting
+
+    /**
+      * purpose : interface between the application and the reporting system.
+      */
+
+as
+
+    /**
+      * name : fn_get_report_list
+      * desc : provides a dataset detailing each of the reports that the current user has the permission to access.
+      */
+
+    function fn_get_report_list
+    return sys_refcursor;
+
+end pk_reporting;
+/
+
+sho err
