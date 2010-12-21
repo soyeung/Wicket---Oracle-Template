@@ -85,7 +85,7 @@ task buildDatabase( type: Exec ){
 test{
     systemProperties 'unit.test.connection.pool.class'              : 'oracle.jdbc.pool.OracleDataSource'
     systemProperties 'unit.test.connection.pool.name'               : 'unit_test_ucp'
-    systemProperties 'unit.test.connection.pool.url'                : 'jdbc:oracle:thin:@127.0.0.1:1522:xe'
+    systemProperties 'unit.test.connection.pool.url'                : 'jdbc:oracle:thin:@127.0.0.1:1521:xe'
     systemProperties 'unit.test.user'                               : 'UNIT_TEST'
     systemProperties 'unit.test.password'                           : 'sup3r!2'
     systemProperties 'unit.test.ucp.abandoned.connection.timeout'   : '300'
