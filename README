@@ -16,7 +16,10 @@ Setup
 
 The root folder is the one which contains the file 'build.gradle.'
 
-1. Open ROOT_FOLDER/build.gradle. Search for the following lines - which will need to be customised for your needs:
+1.
+==
+
+Open the file ROOT_FOLDER/build.gradle. Search for the following lines - which will need to be customised for your needs:
 
 
 
@@ -25,16 +28,33 @@ The root folder is the one which contains the file 'build.gradle.'
     oracle_install_sid               = 'xe'
     commandLine "C:/oraclexe/app/oracle/product/10.2.0/server/BIN/sqlplus.exe"
 
-    systemProperties 'unit.test.connection.pool.url'                : 'jdbc:oracle:thin:@127.0.0.1:1522:xe'
+    systemProperties 'unit.test.connection.pool.url'                : 'jdbc:oracle:thin:@127.0.0.1:1521:xe'
 
 
 
-Note that typically, Oracle listens on port 1521, not port 1522.
+Note that typically, Oracle listens on port 1521.
 
-2. Create a new folder called 'lib' within the root folder. Place the jars containing the Oracle jdbc driver and the Oracle Universal Connection Pool into it.
+2.
+==
+
+Open the file ROOT_FOLDER/src/main/webapp/WEB-INF/web.xml
+
+Modify the line:
+
+                <param-value>jdbc:oracle:thin:@127.0.0.1:1521:xe</param-value>
+
+and change the connection string to your liking.
+
+3.
+==
+
+Create a new folder called 'lib' within the root folder. Place the jars containing the Oracle jdbc driver and the Oracle Universal Connection Pool into it.
 Note that the 'build.gradle' file requires that the Oracle jdbc driver .jar be called 'ojdbc-11.2.0.1.0.jar' and that the Oracle Universal Pool .jar be called 'oucp-11.2.0.1.0.jar'
 
-3. It is recommended that you create new, default tablespaces on your Oracle XE installation. There is a script in this project which can be found at:
+4.
+==
+
+It is recommended that you create new, default tablespaces on your Oracle XE installation. There is a script in this project which can be found at:
 
 ROOT_FOLDER/src/main/database/oracle/SETUP_DB/physical/tablespaces.sql
 
@@ -50,12 +70,18 @@ In order to run this script you will need to log in to Oracle using SQL*PLUS, as
 
 You will only ever have to perform this step once, ever.
 
-3. On the command line, navigate to the project's root directory. In order to build the database, you can issue the command:
+5.
+==
+
+On the command line, navigate to the project's root directory. In order to build the database, you can issue the command:
 
 gradle buildDatabase
 
 Given that you completed step 1 successfully, gradle will lauch Oracle SQL*PLUS and install the database portion of this application.
 
-4. On the command line, you can now issue the standard gradle commands to build, test and launch the application. The following command will compile and lauch the application:
+6.
+==
+
+On the command line, you can now issue the standard gradle commands to build, test and launch the application. The following command will compile and lauch the application:
 
 gradle jettyRun
