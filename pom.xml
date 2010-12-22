@@ -1,0 +1,395 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.github.wicketoracle</groupId>
+
+    <artifactId>oracleapp</artifactId>
+
+    <packaging>war</packaging>
+
+    <version>1.0-SNAPSHOT</version>
+
+    <name>Wicket and Oracle Starter</name>
+
+    <description>Oracle and Wicket Web Application</description>
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <properties>
+        <!--Dependency versions -->
+        <jackson.version>1.6.3</jackson.version>
+        <jetty.version>6.1.25</jetty.version>
+        <junit.version>4.8.1</junit.version>
+        <log4j.version>1.2.14</log4j.version>
+        <oracle.driver.version>11.2.0.1.0</oracle.driver.version>
+        <slf4j.version>1.5.8</slf4j.version>
+        <wicket.version>1.4.14</wicket.version>
+        <!-- Oracle installation parameters -->
+        <oracle.install.path>@src\main\database\oracle\</oracle.install.path>
+        <oracle.install.file>install.sql</oracle.install.file>
+        <oracle.install.user>SYS</oracle.install.user>
+        <oracle.install.password>hello</oracle.install.password>
+        <oracle.install.sid>XE</oracle.install.sid>
+        <!-- Plugin versions -->
+        <checkstyle.plugin.version>2.6</checkstyle.plugin.version>
+        <compiler.plugin.version>2.3.2</compiler.plugin.version>
+        <eclipse.plugin.version>2.8</eclipse.plugin.version>
+        <exec.plugin.version>1.2</exec.plugin.version>
+        <javadoc.plugin.version>2.7</javadoc.plugin.version>
+        <jetty.plugin.version>6.1.25</jetty.plugin.version>
+        <site.plugin.version>3.0-beta-3</site.plugin.version>
+        <sonar.plugin.version>2.0-beta-1</sonar.plugin.version>
+        <test.plugin.version>2.6</test.plugin.version>
+        <!-- Unit test parameters -->
+        <unit.test.connection.pool.class>oracle.jdbc.pool.OracleDataSource</unit.test.connection.pool.class>
+        <unit.test.connection.pool.name>unit_test_ucp</unit.test.connection.pool.name>
+        <unit.test.connection.pool.url>jdbc:oracle:thin:@127.0.0.1:1521:xe</unit.test.connection.pool.url>
+        <unit.test.user>UNIT_TEST</unit.test.user>
+        <unit.test.password>sup3r!2</unit.test.password>
+        <unit.test.ucp.abandoned.connection.timeout>300</unit.test.ucp.abandoned.connection.timeout>
+        <unit.test.ucp.initial.pool.size>0</unit.test.ucp.initial.pool.size>
+        <unit.test.ucp.max.cached.statements>50</unit.test.ucp.max.cached.statements>
+    </properties>
+
+    <dependencies>
+
+        <!-- JSON Utilities -->
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-core-asl</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+
+        <!--  WICKET DEPENDENCIES -->
+        <dependency>
+            <groupId>org.apache.wicket</groupId>
+            <artifactId>wicket</artifactId>
+            <version>${wicket.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.wicket</groupId>
+            <artifactId>wicket-auth-roles</artifactId>
+            <version>${wicket.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.wicket</groupId>
+            <artifactId>wicket-datetime</artifactId>
+            <version>${wicket.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.wicket</groupId>
+            <artifactId>wicket-devutils</artifactId>
+            <version>${wicket.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.wicket</groupId>
+            <artifactId>wicket-extensions</artifactId>
+            <version>${wicket.version}</version>
+        </dependency>
+
+        <!-- ORACLE DEPENDENCIES -->
+        <dependency>
+            <groupId>oracle</groupId>
+            <artifactId>jdbc</artifactId>
+            <version>${oracle.driver.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>oracle</groupId>
+            <artifactId>ucp</artifactId>
+            <version>${oracle.driver.version}</version>
+        </dependency>
+
+        <!-- LOGGING DEPENDENCIES - LOG4J -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+
+        <!--  JUNIT DEPENDENCY FOR TESTING -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!--  JETTY DEPENDENCIES FOR TESTING  -->
+        <dependency>
+            <groupId>org.mortbay.jetty</groupId>
+            <artifactId>jetty</artifactId>
+            <version>${jetty.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mortbay.jetty</groupId>
+            <artifactId>jetty-util</artifactId>
+            <version>${jetty.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mortbay.jetty</groupId>
+            <artifactId>jetty-management</artifactId>
+            <version>${jetty.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+
+        <resources>
+
+            <resource>
+                <filtering>false</filtering>
+                <directory>src/main/resources</directory>
+            </resource>
+
+            <resource>
+                <filtering>false</filtering>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**</include>
+                </includes>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                </excludes>
+            </resource>
+
+        </resources>
+
+        <testResources>
+            <testResource>
+                <filtering>false</filtering>
+                <directory>src/test/java</directory>
+                <includes>
+                    <include>**</include>
+                </includes>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                </excludes>
+            </testResource>
+
+        </testResources>
+
+        <plugins>
+
+            <!-- mvn checkstyle:checkstyle -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>${checkstyle.plugin.version}</version>
+                <configuration>
+                    <configLocation>${basedir}\checkStyleConfig.xml</configLocation>
+                    <failsOnError>false</failsOnError>
+                </configuration>
+            </plugin>
+
+            <!-- mvn compile -->
+            <plugin>
+                <inherited>true</inherited>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${compiler.plugin.version}</version>
+                <configuration>
+                    <source>1.5</source>
+                    <target>1.5</target>
+                    <optimize>true</optimize>
+                    <debug>true</debug>
+                </configuration>
+            </plugin>
+
+            <!-- mvn eclipse -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-eclipse-plugin</artifactId>
+                <version>${eclipse.plugin.version}</version>
+                <configuration>
+                    <downloadSources>true</downloadSources>
+                    <additionalProjectnatures>
+                        <projectnature>wicketbench.wicketnature</projectnature>
+                    </additionalProjectnatures>
+                    <additionalBuildcommands>
+                        <buildcommand>wicketbench.associatedMarkupAuditor</buildcommand>
+                    </additionalBuildcommands>
+                </configuration>
+            </plugin>
+
+            <!-- mvn exec:exec - configure database build -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>${exec.plugin.version}</version>
+
+                <configuration>
+
+                    <executable>C:\oraclexe\app\oracle\product\10.2.0\server\BIN\sqlplus.exe</executable>
+
+                    <arguments>
+
+                        <argument>
+                            <!-- Log on only once -->
+                            -L
+                        </argument>
+
+                        <argument>
+                            <!-- User credentials required to run the installation -->
+                            "${oracle.install.user}/${oracle.install.password}@${oracle.install.sid} AS SYSDBA"
+                        </argument>
+
+                        <argument>
+                            <!-- path to the installation file -->
+                            "${oracle.install.path}${oracle.install.file}"
+                        </argument>
+
+                        <argument>
+                            <!-- see install.sql - &1 -->
+                            ${oracle.install.path}
+                        </argument>
+
+                        <argument>
+                            <!-- see install.sql - &2 -->
+                            ${oracle.install.user}
+                        </argument>
+
+                        <argument>
+                            <!-- see install.sql - &3 -->
+                            ${oracle.install.password}
+                        </argument>
+
+                        <argument>
+                            <!-- see install.sql - &4 -->
+                            ${oracle.install.sid}
+                        </argument>
+
+                    </arguments>
+
+                </configuration>
+
+            </plugin>
+
+            <!--  mvn jetty -->
+            <plugin>
+                <groupId>org.mortbay.jetty</groupId>
+                <artifactId>maven-jetty-plugin</artifactId>
+                <version>${jetty.plugin.version}</version>
+                <configuration>
+                    <connectors>
+                        <connector implementation="org.mortbay.jetty.bio.SocketConnector">
+                            <port>8082</port>
+                            <maxIdleTime>3600000</maxIdleTime>
+                            <soLingerTime>-1</soLingerTime>
+                        </connector>
+                        <connector implementation="org.mortbay.jetty.security.SslSocketConnector">
+                            <port>443</port>
+                            <maxIdleTime>3600000</maxIdleTime>
+                            <soLingerTime>-1</soLingerTime>
+                            <keystore>${project.build.directory}/jetty-ssl.keystore</keystore>
+                            <password>jetty6</password>
+                            <keyPassword>jetty6</keyPassword>
+                        </connector>
+                    </connectors>
+                </configuration>
+            </plugin>
+
+            <!-- mvn key store-->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>keytool-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>generate-resources</phase>
+                        <id>clean</id>
+                        <goals>
+                            <goal>clean</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <phase>generate-resources</phase>
+                        <id>genkey</id>
+                        <goals>
+                            <goal>genkey</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <keystore>${project.build.directory}/jetty-ssl.keystore</keystore>
+                    <dname>cn=github.com/andrewah/Wicket---Oracle-Template</dname>
+                    <keypass>jetty6</keypass>
+                    <storepass>jetty6</storepass>
+                        <alias>jetty6</alias>
+                        <keyalg>RSA</keyalg>
+                </configuration>
+            </plugin>
+
+            <!-- mvn javadoc:javadoc -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>${javadoc.plugin.version}</version>
+            </plugin>
+
+            <!-- mvn site -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>${site.plugin.version}</version>
+            </plugin>
+
+            <!-- mvn sonar:sonar -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>${sonar.plugin.version}</version>
+            </plugin>
+
+            <!-- mvn test -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${test.plugin.version}</version>
+                <configuration>
+                    <skipTests>false</skipTests>
+                    <systemPropertyVariables>
+                        <unit.test.connection.pool.class>${unit.test.connection.pool.class}</unit.test.connection.pool.class>
+                        <unit.test.connection.pool.name>${unit.test.connection.pool.name}</unit.test.connection.pool.name>
+                        <unit.test.connection.pool.url>${unit.test.connection.pool.url}</unit.test.connection.pool.url>
+                        <unit.test.ucp.abandoned.connection.timeout>${unit.test.ucp.abandoned.connection.timeout}</unit.test.ucp.abandoned.connection.timeout>
+                        <unit.test.ucp.initial.pool.size>${unit.test.ucp.initial.pool.size}</unit.test.ucp.initial.pool.size>
+                        <unit.test.ucp.max.cached.statements>${unit.test.ucp.max.cached.statements}</unit.test.ucp.max.cached.statements>
+                        <unit.test.password>${unit.test.password}</unit.test.password>
+                        <unit.test.user>${unit.test.user}</unit.test.user>
+                    </systemPropertyVariables>
+                </configuration>
+            </plugin>
+
+        </plugins>
+
+    </build>
+
+</project>
