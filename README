@@ -89,3 +89,8 @@ gradle jettyRun
 The application should now be accessible via:
 
 https://localhost/ROOT_FOLDER
+
+7
+==
+
+Credentials are case sensitive - after the install,you can login using the username : SUPERUSER and the password : sup3r!2 
