@@ -35,7 +35,7 @@ repositories {
     flatDir name: 'localRepository', dirs: 'lib'
 }
 
-jackson_version     = '1.6.3'
+jackson_version     = '1.6.4'
 junit_version       = '4.8.1'
 oracle_ucp_version  = '11.2.0.2.0'
 oracle_jdbc_version = '11.2.0.2.0'
