@@ -37,15 +37,16 @@ repositories {
 
 jackson_version     = '1.6.3'
 junit_version       = '4.8.1'
-oracle_ucp_version  = '11.2.0.1.0'
-oracle_jdbc_version = '11.2.0.1.0'
+oracle_ucp_version  = '11.2.0.2.0'
+oracle_jdbc_version = '11.2.0.2.0'
 servlet_api_version = '2.5'
 slf4j_version       = '1.6.1'
-wicket_version      = '1.4.14'
+wicket_version      = '1.4.15'
 
 dependencies {
     compile group: 'org.codehaus.jackson' , name: 'jackson-core-asl'   , version: jackson_version
     compile group: 'org.codehaus.jackson' , name: 'jackson-mapper-asl' , version: jackson_version
+
     compile group: 'oracle.jdbc'          , name: 'ojdbc'              , version: oracle_jdbc_version
     compile group: 'oracle.ucp'           , name: 'oucp'               , version: oracle_jdbc_version
     compile group: 'org.slf4j'            , name: 'slf4j-log4j12'      , version: slf4j_version
