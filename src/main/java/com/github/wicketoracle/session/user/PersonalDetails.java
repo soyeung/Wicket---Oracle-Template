@@ -1,10 +1,10 @@
 package com.github.wicketoracle.session.user;
 
-import java.io.Serializable;
+import org.apache.wicket.IClusterable;
 
 import org.apache.wicket.authorization.strategies.role.Roles;
 
-public class PersonalDetails implements Serializable
+public class PersonalDetails implements IClusterable
 {
     private static final long serialVersionUID = 1L;
 

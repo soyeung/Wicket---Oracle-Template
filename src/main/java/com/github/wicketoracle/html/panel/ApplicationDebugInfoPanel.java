@@ -8,7 +8,6 @@ import org.apache.wicket.protocol.http.WebApplication;
 
 import com.github.wicketoracle.session.Session;
 
-
 /**
  *
  * @author Andrew Hall

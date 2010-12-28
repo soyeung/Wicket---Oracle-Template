@@ -7,6 +7,7 @@ import org.apache.wicket.Localizer;
 import org.apache.wicket.authorization.strategies.role.annotations.AuthorizeInstantiation;
 import org.apache.wicket.markup.html.form.StatelessForm;
 import org.apache.wicket.markup.html.form.PasswordTextField;
+import org.apache.wicket.markup.html.form.validation.EqualPasswordInputValidator;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.PropertyModel;
@@ -75,6 +76,7 @@ public final class ChangePasswordPage extends StandardPage
             currentPasswordTextField.add( new LengthBetweenValidator( 1 , MAX_PASSWORD_LENGTH ) );
             newPasswordTextField.add( new LengthBetweenValidator( 1 , MAX_PASSWORD_LENGTH ) );
             confirmedNewPasswordTextField.add( new LengthBetweenValidator( 1 , MAX_PASSWORD_LENGTH ) );
+            add( new EqualPasswordInputValidator( newPasswordTextField , confirmedNewPasswordTextField ) );
         }
 
         /**

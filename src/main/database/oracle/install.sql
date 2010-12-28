@@ -186,7 +186,7 @@ exec sys.utl_recomp.recomp_serial( null );
 -- revoke privileges from schema which they do not require post installation
 --
 
---@&path_to_this_file\setup_db\schema\revoke_privileges
+@&path_to_this_file\setup_db\schema\revoke_privileges
 
 --
 -- make sure that the cbo comes into play
