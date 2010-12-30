@@ -10,6 +10,7 @@ import org.apache.wicket.authorization.strategies.role.annotations.AuthorizeInst
 import org.apache.wicket.datetime.PatternDateConverter;
 import org.apache.wicket.datetime.markup.html.basic.DateLabel;
 import org.apache.wicket.Localizer;
+import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
@@ -37,7 +38,6 @@ import com.github.wicketoracle.html.page.StandardPage;
 import com.github.wicketoracle.html.panel.PaginationPanel;
 import com.github.wicketoracle.html.panel.menu.PostLoginMenuPanelFactory;
 import com.github.wicketoracle.session.Session;
-
 
 @AuthorizeInstantiation( RequiredRoles.ROLE_STANDARD_APP_USER_MGR )
 public final class StandardUserMgrPage extends StandardPage
@@ -378,30 +378,44 @@ public final class StandardUserMgrPage extends StandardPage
                         pItem.add( new DateLabel( "dateCreated" , new PatternDateConverter( "dd-MM-yyyy", false ) ) );
                         pItem.add
                         (
-                            new Link<StandardUser>( "LinkChangeRoles" )
-                            {
-                                private static final long serialVersionUID = 1L;
-
-                                @Override
-                                public void onClick()
+                            new WebMarkupContainer
+                            (
+                                "LabelLinkChangeRoles"
+                            )
+                            .add
+                            (
+                                new Link<StandardUser>( "LinkChangeRoles" )
                                 {
-                                    setResponsePage( new StandardUserRoleMgrPage( pItem.getModelObject() ) );
+                                    private static final long serialVersionUID = 1L;
+
+                                    @Override
+                                    public void onClick()
+                                    {
+                                        setResponsePage( new StandardUserRoleMgrPage( pItem.getModelObject() ) );
+                                    }
                                 }
-                            }
+                            )
                             .setVisible( canChangeRoles )
                         );
                         pItem.add
                         (
-                            new Link<Void>( "LinkChangePassword" )
-                            {
-                                private static final long serialVersionUID = 1L;
-
-                                @Override
-                                public void onClick()
+                            new WebMarkupContainer
+                            (
+                                "LabelLinkChangePassword"
+                            )
+                            .add
+                            (
+                                new Link<StandardUser>( "LinkChangePassword" )
                                 {
-                                    setResponsePage( new StandardUserPasswordMgrPage( pItem.getModelObject() ) );
+                                    private static final long serialVersionUID = 1L;
+
+                                    @Override
+                                    public void onClick()
+                                    {
+                                        setResponsePage( new StandardUserPasswordMgrPage( pItem.getModelObject() ) );
+                                    }
                                 }
-                            }
+                            )
                             .setEnabled( ! isUserTheCurrentUser )
                             .setVisible( canChangePasswords )
                         );

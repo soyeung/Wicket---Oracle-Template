@@ -276,6 +276,11 @@ public final class LogonHistoryReportPage extends StandardPage
             }
         }
 
+        /**
+         *
+         * @param pId
+         * @param pPaginationPanel
+         */
         public LogonHistoryView( final String pId , final PaginationPanel pPaginationPanel )
         {
             super( pId );

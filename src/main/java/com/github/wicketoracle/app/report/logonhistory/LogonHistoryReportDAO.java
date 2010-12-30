@@ -146,7 +146,7 @@ final class LogonHistoryReportDAO extends AbstractOracleDAO
             while ( dbRs.next() )
             {
                 reportData.add
-           (
+                (
                     new ReportRecord
                    (
                             dbRs.getString( "AUR_USERNAME" )
@@ -162,7 +162,7 @@ final class LogonHistoryReportDAO extends AbstractOracleDAO
         catch ( SQLException sqle )
         {
             LOGGER.error
-       (
+            (
                 "SQL Exception whilst running authentication report -> {}; error code -> {}; sql state -> {}; aur id -> {}; start date time -> {}; end date time -> {}; lower record limit -> {}; upper record limit -> {}"
             ,   new Object [ ]
                 {

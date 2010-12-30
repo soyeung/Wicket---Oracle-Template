@@ -33,7 +33,7 @@ as
                from (
 
                            select
-                                 'AURP'              datasetkey
+                                 'AURP'               datasetkey
                                 , vaurp.aurp_id       id
                                 , vaurp.aurp_name     name
                                 , vaurp.aurp_order    ordering
