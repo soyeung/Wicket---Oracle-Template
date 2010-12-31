@@ -37,7 +37,7 @@ as
                         then
                              'N'
                         else
-                            'Y'
+                             'Y'
                       end               dbrl_is_assigned_to_user
                  from
                                 app_data.v_usr_rd_mdbrl   vdbrl

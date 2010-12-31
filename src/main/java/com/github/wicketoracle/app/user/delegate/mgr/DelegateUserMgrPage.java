@@ -10,6 +10,7 @@ import org.apache.wicket.authorization.strategies.role.annotations.AuthorizeInst
 import org.apache.wicket.datetime.PatternDateConverter;
 import org.apache.wicket.datetime.markup.html.basic.DateLabel;
 import org.apache.wicket.Localizer;
+import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
@@ -35,7 +36,6 @@ import com.github.wicketoracle.html.form.choice.YesNoChoice;
 import com.github.wicketoracle.html.page.StandardPage;
 import com.github.wicketoracle.html.panel.menu.PostLoginMenuPanelFactory;
 import com.github.wicketoracle.session.Session;
-
 
 @AuthorizeInstantiation( RequiredRoles.ROLE_DELEGATE_APP_USER_MGR )
 public final class DelegateUserMgrPage extends StandardPage
@@ -206,7 +206,7 @@ public final class DelegateUserMgrPage extends StandardPage
             add( isEnabledLabel );
             add( isTracingEnabledLabel );
             add( dateCreatedLabel );
-            add( changeRolesLabel ).setVisible( canChangeRoles );
+            add( changeRolesLabel.setVisible( canChangeRoles ) );
 
             add
             (
@@ -239,16 +239,23 @@ public final class DelegateUserMgrPage extends StandardPage
                         pItem.add( new DateLabel( "dateCreated" , new PatternDateConverter( "dd-MM-yyyy", false ) ) );
                         pItem.add
                         (
-                            new Link<DelegateUser>( "LinkChangeRoles" )
-                            {
-                                private static final long serialVersionUID = 1L;
-
-                                @Override
-                                public void onClick()
+                            new WebMarkupContainer
+                            (
+                                "LabelLinkChangeRoles"
+                            )
+                            .add
+                            (
+                                new Link<DelegateUser>( "LinkChangeRoles" )
                                 {
-                                    setResponsePage( new DelegateUserRoleMgrPage( pItem.getModelObject() ) );
+                                    private static final long serialVersionUID = 1L;
+
+                                    @Override
+                                    public void onClick()
+                                    {
+                                        setResponsePage( new DelegateUserRoleMgrPage( pItem.getModelObject() ) );
+                                    }
                                 }
-                            }
+                            )
                             .setVisible( canChangeRoles )
                         );
                     }
