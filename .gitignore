@@ -1,0 +1,9 @@
+.classpath
+.project
+.gradle
+.settings
+wicket.log
+wicketoracle.log
+/build
+/target
+!.gitignore
