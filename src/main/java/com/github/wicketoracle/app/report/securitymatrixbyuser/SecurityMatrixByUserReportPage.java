@@ -23,7 +23,7 @@ import com.github.wicketoracle.session.Session;
 
 public class SecurityMatrixByUserReportPage extends StandardPage
 {
-    private static final Logger LOGGER = LoggerFactory.getLogger( UserActivityReportPage.class );
+    private static final Logger LOGGER = LoggerFactory.getLogger( SecurityMatrixByUserReportPage.class );
 
     private final Panel          menuPanel      = PostLoginMenuPanelFactory.getPostLoginMenuPanel();
     private final SearchForm     searchForm     = new SearchForm( "searchForm" );

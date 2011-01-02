@@ -84,7 +84,7 @@ as
 
         v_data_set          sys_refcursor;
 
-        v_sql              varchar2(32767 char);
+        v_sql               varchar2(32767 char);
         v_column_definition varchar2(32767 char);
 
         /**
