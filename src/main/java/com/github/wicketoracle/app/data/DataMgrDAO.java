@@ -287,7 +287,7 @@ final class DataMgrDAO extends AbstractOracleDAO
         catch ( SQLException sqle )
         {
             LOGGER.error
-           (
+            (
                 "SQL Exception whilst configuring reference data -> {}; error code -> {}; sql state -> {}"
             ,   new Object [ ]
                 {

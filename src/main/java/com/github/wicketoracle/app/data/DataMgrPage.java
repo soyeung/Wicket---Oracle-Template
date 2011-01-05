@@ -143,6 +143,19 @@ public final class DataMgrPage extends StandardPage
 
             treeTableColumns.add( new PropertyTreeColumn( new ColumnLocation( Alignment.MIDDLE , 18 , Unit.PROPORTIONAL ) , localizer.getString( "HeaderDataStructureName" , this ) , "userObject.refdataDescr" ) );
 
+            if ( getIsDebugInfoVisible() )
+            {
+                treeTableColumns.add
+                (
+                    new PropertyRenderableColumn( new ColumnLocation( Alignment.MIDDLE , 8 , Unit.PROPORTIONAL ) , "Required DB Role", "userObject.dbrlCode" )
+                );
+
+                treeTableColumns.add
+                (
+                    new PropertyRenderableColumn( new ColumnLocation( Alignment.MIDDLE , 8 , Unit.PROPORTIONAL ) , "Data Structure Type", "userObject.rdtCode" )
+                );
+            }
+
             if ( canConfigureData )
             {
                 treeTableColumns.add
