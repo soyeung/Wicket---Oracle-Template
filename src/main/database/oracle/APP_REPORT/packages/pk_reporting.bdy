@@ -18,12 +18,12 @@ as
         c_start_time     constant number              := dbms_utility.get_time;
         c_procedure_name constant varchar2( 30 char ) := 'fn_get_report_list';
 
-        l_data_set sys_refcursor;
+        v_data_set sys_refcursor;
 
     begin
 
         open
-             l_data_set
+             v_data_set
          for
              with
                   data
@@ -53,53 +53,51 @@ as
                               app_data.v_usr_rd_rptc        rptc
                          join app_data.report_category_link rptcl on rptc.rptc_id = rptcl.rptc_child_id
              )
-                     select
-                            d.rptc_name     name
-                          , level           hlevel
-                          , cast
-                            (
-                              multiset
-                              (
-                                (
-                                  select
-                                         rpt.rpt_name
-                                       , dbrl.dbrl_code
-                                       , rpt.rpt_page
-                                    from
-                                              app_data.v_usr_rd_rpt           rpt
-                                         join app_data.v_adm_rd_dbrl          dbrl     on rpt.dbrl_id  = dbrl.dbrl_id
-                                         join app_data.report_category_report rptcr    on rpt.rpt_id   = rptcr.rpt_id
-                                         join app_data.v_app_user_role        vaurdbrl on dbrl.dbrl_id = vaurdbrl.dbrl_id
-                                   where
-                                         rptcr.rptc_id         = d.rptc_child_id
-                                     and vaurdbrl.aur_username = c_user
-                                )
-                              )
-                              as app_report.tty_report
-                            )               rpt_set
-                       from
-                            data d
-                      where
-                            exists (
+                        select
+                               d.rptc_name     name
+                             , level           hlevel
+                             , cast
+                               (
+                                 multiset
+                                 (
+                                   (
                                      select
-                                            null
+                                            rpt.rpt_name
+                                          , dbrl.dbrl_code
+                                          , rpt.rpt_page
                                        from
-                                                 app_data.report_category_report rptcr
-                                            join app_data.v_usr_rd_rpt           rpt      on rptcr.rpt_id = rpt.rpt_id
+                                                 app_data.v_usr_rd_rpt           rpt
                                             join app_data.v_adm_rd_dbrl          dbrl     on rpt.dbrl_id  = dbrl.dbrl_id
+                                            join app_data.report_category_report rptcr    on rpt.rpt_id   = rptcr.rpt_id
                                             join app_data.v_app_user_role        vaurdbrl on dbrl.dbrl_id = vaurdbrl.dbrl_id
                                       where
                                             rptcr.rptc_id         = d.rptc_child_id
                                         and vaurdbrl.aur_username = c_user
                                    )
-                 start with
-                            d.rptc_parent_id is null
-                 connect by
-                            prior d.rptc_child_id = d.rptc_parent_id
-             order siblings
-                         by
-                            d.rptc_name asc
-                          ;
+                                 )
+                                 as app_report.tty_report
+                               )               rpt_set
+                          from
+                               data d
+                         where
+                               exists (
+                                        select
+                                               null
+                                          from
+                                                    app_data.report_category_report rptcr
+                                               join app_data.v_usr_rd_rpt           rpt      on rptcr.rpt_id = rpt.rpt_id
+                                               join app_data.v_adm_rd_dbrl          dbrl     on rpt.dbrl_id  = dbrl.dbrl_id
+                                               join app_data.v_app_user_role        vaurdbrl on dbrl.dbrl_id = vaurdbrl.dbrl_id
+                                         where
+                                               rptcr.rptc_id         = d.rptc_child_id
+                                           and vaurdbrl.aur_username = c_user
+                                      )
+                    start with
+                               d.rptc_parent_id is null
+                    connect by
+                               prior d.rptc_child_id = d.rptc_parent_id
+             order siblings by d.rptc_name asc
+                             ;
 
         app_log.pk_log.pr_log_activity
         (
@@ -110,7 +108,7 @@ as
         ,   p_end_time       => sys.dbms_utility.get_time
         );
 
-        return l_data_set;
+        return v_data_set;
 
     end fn_get_report_list;
 
