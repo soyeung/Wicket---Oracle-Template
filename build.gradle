@@ -62,24 +62,18 @@ dependencies {
 }
 
 task buildDatabase( type: Exec ){
-    oracle_install_user              = 'sys'
-    oracle_install_password          = 'hello'
-    oracle_install_sid               = 'xe'
-    oracle_install_connection_string = oracle_install_user + '/' + oracle_install_password + '@' + oracle_install_sid + ' as sysdba'
-    path_to_install_folder           = "@src/main/database/oracle/"
-    path_to_install_script           = '"' + path_to_install_folder + 'install.sql"'
-
+    
     def sqlplus_args = [
-                           "-L"
-                       ,   "\"$oracle_install_connection_string\""
-                       ,   "\"$path_to_install_script\""
-                       ,   path_to_install_folder
-                       ,   oracle_install_user
-                       ,   oracle_install_password
-                       ,   oracle_install_sid
+                           '-L'
+                       ,   'sys/hello@xe as sysdba'
+                       ,   '@src/main/database/oracle/install'
+                       ,   '@src/main/database/oracle/'
+                       ,   'sys'
+                       ,   'hello'
+                       ,   'xe'
                        ]
 
-    commandLine "C:/oraclexe/app/oracle/product/10.2.0/server/BIN/sqlplus.exe"
+    commandLine 'sqlplus'
     args sqlplus_args
 }
 
