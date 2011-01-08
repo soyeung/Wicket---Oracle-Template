@@ -126,6 +126,14 @@ Given that you completed step 1 successfully, Maven will lauch Oracle SQL*PLUS a
 6.
 ==
 
+Toggle between 'development' & 'deployment' modes by modifying the following lines in the file 'ROOT_FOLDER/src/main/webapp/WEB-INF/web.xml' :
+
+        <init-param>
+            <param-name>wicket.configuration</param-name>
+            <param-value>development</param-value>
+            <!--<param-value>deployment</param-value>-->
+        </init-param>
+
 a. For Gradle users
 ====================
 
