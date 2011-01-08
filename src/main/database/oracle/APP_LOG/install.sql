@@ -25,4 +25,4 @@ grant select, insert on app_data.authentication_log to &log_user
 grant select         on app_data.v_app_user         to &log_user
 /
 
-@&path_to_this_file\&logging_system_path\packages\pk_log_installation_only
+@&path_to_this_file/&logging_system_path/packages/pk_log_installation_only

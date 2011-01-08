@@ -64,62 +64,62 @@ grant select on app_data.v_usr_rd_lng                      to &usermgr_user
 grant select on app_data.v_adm_rd_lng                      to &usermgr_user
 /
 
-@&path_to_this_file\&user_mgr_system_path\types\ty_db_role
+@&path_to_this_file/&user_mgr_system_path/types/ty_db_role
 
-@&path_to_this_file\&user_mgr_system_path\types\tty_db_role
+@&path_to_this_file/&user_mgr_system_path/types/tty_db_role
 
-@&path_to_this_file\&user_mgr_system_path\types\ty_standard_app_user
+@&path_to_this_file/&user_mgr_system_path/types/ty_standard_app_user
 
-@&path_to_this_file\&user_mgr_system_path\types\tty_standard_app_user
+@&path_to_this_file/&user_mgr_system_path/types/tty_standard_app_user
 
-@&path_to_this_file\&user_mgr_system_path\types\ty_delegate_app_user
+@&path_to_this_file/&user_mgr_system_path/types/ty_delegate_app_user
 
-@&path_to_this_file\&user_mgr_system_path\types\tty_delegate_app_user
+@&path_to_this_file/&user_mgr_system_path/types/tty_delegate_app_user
 
-@&path_to_this_file\&user_mgr_system_path\packages\pk_set_app_user_roles.hdr
+@&path_to_this_file/&user_mgr_system_path/packages/pk_set_app_user_roles.hdr
 
-@&path_to_this_file\&user_mgr_system_path\packages\pk_set_app_user_roles.bdy
+@&path_to_this_file/&user_mgr_system_path/packages/pk_set_app_user_roles.bdy
 
-@&path_to_this_file\&user_mgr_system_path\packages\pk_app_user_password_mgr.hdr
+@&path_to_this_file/&user_mgr_system_path/packages/pk_app_user_password_mgr.hdr
 
-@&path_to_this_file\&user_mgr_system_path\packages\pk_app_user_password_mgr.bdy
+@&path_to_this_file/&user_mgr_system_path/packages/pk_app_user_password_mgr.bdy
 
-@&path_to_this_file\&user_mgr_system_path\packages\pk_app_user_role_mgr.hdr
+@&path_to_this_file/&user_mgr_system_path/packages/pk_app_user_role_mgr.hdr
 
-@&path_to_this_file\&user_mgr_system_path\packages\pk_app_user_role_mgr.bdy
+@&path_to_this_file/&user_mgr_system_path/packages/pk_app_user_role_mgr.bdy
 
-@&path_to_this_file\&user_mgr_system_path\packages\pk_app_user_mgr.hdr
+@&path_to_this_file/&user_mgr_system_path/packages/pk_app_user_mgr.hdr
 
-@&path_to_this_file\&user_mgr_system_path\packages\pk_app_user_mgr.bdy
+@&path_to_this_file/&user_mgr_system_path/packages/pk_app_user_mgr.bdy
 
-@&path_to_this_file\&user_mgr_system_path\packages\pk_standard_app_user_mgr.hdr
+@&path_to_this_file/&user_mgr_system_path/packages/pk_standard_app_user_mgr.hdr
 
-@&path_to_this_file\&user_mgr_system_path\packages\pk_standard_app_user_mgr.bdy
+@&path_to_this_file/&user_mgr_system_path/packages/pk_standard_app_user_mgr.bdy
 
-@&path_to_this_file\&user_mgr_system_path\packages\pk_delegate_app_user_mgr.hdr
+@&path_to_this_file/&user_mgr_system_path/packages/pk_delegate_app_user_mgr.hdr
 
-@&path_to_this_file\&user_mgr_system_path\packages\pk_delegate_app_user_mgr.bdy
+@&path_to_this_file/&user_mgr_system_path/packages/pk_delegate_app_user_mgr.bdy
 
-@&path_to_this_file\&user_mgr_system_path\packages\pk_delegate_user_role_mgr.hdr
+@&path_to_this_file/&user_mgr_system_path/packages/pk_delegate_user_role_mgr.hdr
 
-@&path_to_this_file\&user_mgr_system_path\packages\pk_delegate_user_role_mgr.bdy
+@&path_to_this_file/&user_mgr_system_path/packages/pk_delegate_user_role_mgr.bdy
 
-@&path_to_this_file\&user_mgr_system_path\packages\pk_standard_user_role_mgr.hdr
+@&path_to_this_file/&user_mgr_system_path/packages/pk_standard_user_role_mgr.hdr
 
-@&path_to_this_file\&user_mgr_system_path\packages\pk_standard_user_role_mgr.bdy
+@&path_to_this_file/&user_mgr_system_path/packages/pk_standard_user_role_mgr.bdy
 
-@&path_to_this_file\&user_mgr_system_path\packages\pk_standard_user_password_mgr.hdr
+@&path_to_this_file/&user_mgr_system_path/packages/pk_standard_user_password_mgr.hdr
 
-@&path_to_this_file\&user_mgr_system_path\packages\pk_standard_user_password_mgr.bdy
+@&path_to_this_file/&user_mgr_system_path/packages/pk_standard_user_password_mgr.bdy
 
-@&path_to_this_file\&user_mgr_system_path\packages\pk_app_user_creation.hdr
+@&path_to_this_file/&user_mgr_system_path/packages/pk_app_user_creation.hdr
 
-@&path_to_this_file\&user_mgr_system_path\packages\pk_app_user_creation.bdy
+@&path_to_this_file/&user_mgr_system_path/packages/pk_app_user_creation.bdy
 
-@&path_to_this_file\&user_mgr_system_path\packages\pk_standard_user_creation.hdr
+@&path_to_this_file/&user_mgr_system_path/packages/pk_standard_user_creation.hdr
 
-@&path_to_this_file\&user_mgr_system_path\packages\pk_standard_user_creation.bdy
+@&path_to_this_file/&user_mgr_system_path/packages/pk_standard_user_creation.bdy
 
-@&path_to_this_file\&user_mgr_system_path\packages\pk_delegate_user_creation.hdr
+@&path_to_this_file/&user_mgr_system_path/packages/pk_delegate_user_creation.hdr
 
-@&path_to_this_file\&user_mgr_system_path\packages\pk_delegate_user_creation.bdy
+@&path_to_this_file/&user_mgr_system_path/packages/pk_delegate_user_creation.bdy

@@ -61,31 +61,31 @@ conn &sys_logon as sysdba
 -- create the new database schema that are required by the template appplication
 --
 
-@&path_to_this_file\setup_db\schema\create
+@&path_to_this_file/SETUP_DB/schema/create
 
 --
 -- install utilities
 --
 
-@&path_to_this_file\&utility_system_path\install
+@&path_to_this_file/&utility_system_path/install
 
 --
 -- install data structures
 --
 
-@&path_to_this_file\&data_path\install
+@&path_to_this_file/&data_path/install
 
 --
 -- install event logging system
 --
 
-@&path_to_this_file\&logging_system_path\install
+@&path_to_this_file/&logging_system_path/install
 
 --
 -- install exception handling system
 --
 
-@&path_to_this_file\&exception_system_path\install
+@&path_to_this_file/&exception_system_path/install
 
 
 --
@@ -104,67 +104,67 @@ grant select on app_data.v_standard_app_user to &utility_user
 grant select on app_data.app_exception to &utility_user
 /
 
-@&path_to_this_file\&utility_system_path\packages\pk_session_utility.hdr
+@&path_to_this_file/&utility_system_path/packages/pk_session_utility.hdr
 
-@&path_to_this_file\&utility_system_path\packages\pk_session_utility.bdy
+@&path_to_this_file/&utility_system_path/packages/pk_session_utility.bdy
 
-@&path_to_this_file\&utility_system_path\packages\pk_assert.hdr
+@&path_to_this_file/&utility_system_path/packages/pk_assert.hdr
 
-@&path_to_this_file\&utility_system_path\packages\pk_assert.bdy
+@&path_to_this_file/&utility_system_path/packages/pk_assert.bdy
 
 --
 -- install sys objects
 --
 
-@&path_to_this_file\sys\password_verification
+@&path_to_this_file/sys/password_verification
 
 --
 -- create and register user profiles
 --
 
-@&path_to_this_file\setup_db\profiles\install
+@&path_to_this_file/setup_db/profiles/install
 
 --
 -- install contents of the application admin schema
 --
 
-@&path_to_this_file\&user_mgr_system_path\install
+@&path_to_this_file/&user_mgr_system_path/install
 
 --
 -- install contents of the reference data admin schema
 --
 
-@&path_to_this_file\&ref_data_mgr_system_path\install
+@&path_to_this_file/&ref_data_mgr_system_path/install
 
 --
 -- install contents of reporting system
 --
 
-@&path_to_this_file\&reporting_system_path\install
+@&path_to_this_file/&reporting_system_path/install
 
 --
 -- roles
 --
 
-@&path_to_this_file\setup_db\roles\install
+@&path_to_this_file/SETUP_DB/roles/install
 
 --
 -- setup seed data
 --
 
-@&path_to_this_file\setup_db\data\install
+@&path_to_this_file/SETUP_DB/data/install
 
 --
 -- users
 --
 
-@&path_to_this_file\setup_db\users\install
+@&path_to_this_file/setup_db/users/install
 
 --
 -- add a version of the logging package whose procedure bodies are implemented - i do not want to record events during installation.
 --
 
-@&path_to_this_file\&logging_system_path\packages\pk_log.bdy
+@&path_to_this_file/&logging_system_path/packages/pk_log.bdy
 
 prompt revoke all roles from sys that have been created as part of this installation
 
@@ -186,7 +186,7 @@ exec sys.utl_recomp.recomp_serial( null );
 -- revoke privileges from schema which they do not require post installation
 --
 
-@&path_to_this_file\setup_db\schema\revoke_privileges
+@&path_to_this_file/SETUP_DB/schema/revoke_privileges
 
 --
 -- make sure that the cbo comes into play
