@@ -116,13 +116,13 @@ grant select on app_data.app_exception to &utility_user
 -- install sys objects
 --
 
-@&path_to_this_file/sys/password_verification
+@&path_to_this_file/SYS/password_verification
 
 --
 -- create and register user profiles
 --
 
-@&path_to_this_file/setup_db/profiles/install
+@&path_to_this_file/SETUP_DB/profiles/install
 
 --
 -- install contents of the application admin schema
@@ -158,7 +158,7 @@ grant select on app_data.app_exception to &utility_user
 -- users
 --
 
-@&path_to_this_file/setup_db/users/install
+@&path_to_this_file/SETUP_DB/users/install
 
 --
 -- add a version of the logging package whose procedure bodies are implemented - i do not want to record events during installation.
