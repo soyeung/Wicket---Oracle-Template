@@ -1,1 +1,1 @@
-@&path_to_this_file\setup_db\profiles\profile_standard
+@&path_to_this_file/setup_db/profiles/profile_standard
