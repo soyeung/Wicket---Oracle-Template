@@ -18,5 +18,6 @@ public class TestHomePage extends TestCase
     {
         tester.doUnitTestLogin();
         tester.assertRenderedPage( HomePage.class );
+        tester.assertNoLeakedConnections();
     }
 }

@@ -21,6 +21,7 @@ public class TestStandardUserMgrPage extends TestCase
         tester.doUnitTestLogin();
         tester.clickLink( "PanelMenu:LinkManageStandardUsers" );
         tester.assertRenderedPage( StandardUserMgrPage.class );
+        tester.assertNoLeakedConnections();
     }
 
     public final void testSearchForm()
@@ -31,6 +32,7 @@ public class TestStandardUserMgrPage extends TestCase
         FormTester formTester = tester.newFormTester( "searchUserForm" );
         formTester.submit();
         tester.assertRenderedPage( StandardUserMgrPage.class );
+        tester.assertNoLeakedConnections();
     }
 
     public final void testManagementForm()
@@ -39,5 +41,6 @@ public class TestStandardUserMgrPage extends TestCase
         FormTester formTester = tester.newFormTester( "mgrForm" );
         formTester.submit();
         tester.assertRenderedPage( StandardUserMgrPage.class );
+        tester.assertNoLeakedConnections();
     }
 }

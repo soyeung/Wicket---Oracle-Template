@@ -19,5 +19,6 @@ public class TestSecurityModelReportPage extends TestCase
         tester.doUnitTestLogin();
         tester.startPage( SecurityModelReportPage.class );
         tester.assertRenderedPage( SecurityModelReportPage.class );
+        tester.assertNoLeakedConnections();
     }
 }

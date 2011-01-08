@@ -1,8 +1,9 @@
 package com.github.wicketoracle;
 
-
 import java.sql.SQLException;
 
+import oracle.ucp.jdbc.JDBCConnectionPoolStatistics;
+import oracle.ucp.jdbc.PoolDataSource;
 import oracle.ucp.UniversalConnectionPoolException;
 
 import org.apache.wicket.authentication.AuthenticatedWebApplication;
@@ -10,6 +11,8 @@ import org.apache.wicket.protocol.http.WebRequestCycleProcessor;
 import org.apache.wicket.request.IRequestCycleProcessor;
 import org.apache.wicket.util.tester.FormTester;
 import org.apache.wicket.util.tester.WicketTester;
+
+import org.junit.Assert;
 
 import com.github.wicketoracle.app.login.LoginPage;
 import com.github.wicketoracle.oracle.ucp.UCPMgr;
@@ -131,6 +134,7 @@ public class AppTester extends WicketTester
         formTester.setValue( "username" , pUsername );
         formTester.setValue( "password" , pPassword );
         formTester.submit();
+        assertNoLeakedConnections();
     }
 
     /**
@@ -142,5 +146,12 @@ public class AppTester extends WicketTester
         {
             doLogin( UNIT_TEST_USER , UNIT_TEST_PASSWORD );
         }
+    }
+
+    public void assertNoLeakedConnections()
+    {
+        JDBCConnectionPoolStatistics ucpStatistics = UCPMgr.getUCPDataSource().getStatistics();
+
+        Assert.assertEquals( ucpStatistics.getCumulativeConnectionBorrowedCount() , ucpStatistics.getCumulativeConnectionReturnedCount() );
     }
 }

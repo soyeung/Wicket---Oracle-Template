@@ -19,5 +19,6 @@ public class TestCurrentUserActivityReportPage extends TestCase
         tester.doUnitTestLogin();
         tester.startPage( UserActivityReportPage.class );
         tester.assertRenderedPage( UserActivityReportPage.class );
+        tester.assertNoLeakedConnections();
     }
 }

@@ -20,5 +20,6 @@ public class TestDataMgrPage extends TestCase
         tester.doUnitTestLogin();
         tester.clickLink( "PanelMenu:LinkManageData" );
         tester.assertRenderedPage( DataMgrPage.class );
+        tester.assertNoLeakedConnections();
     }
 }

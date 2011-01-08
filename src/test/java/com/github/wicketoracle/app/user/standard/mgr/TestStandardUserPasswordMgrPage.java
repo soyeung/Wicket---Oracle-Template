@@ -19,5 +19,6 @@ public class TestStandardUserPasswordMgrPage extends TestCase
         tester.doUnitTestLogin();
         tester.startPage( new StandardUserPasswordMgrPage( new StandardUser( 4 , "UNIT_TEST" , null , null , null , null , null , null , false ) ) );
         tester.assertRenderedPage( StandardUserPasswordMgrPage.class );
+        tester.assertNoLeakedConnections();
     }
 }

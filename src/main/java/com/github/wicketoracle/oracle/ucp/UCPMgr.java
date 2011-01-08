@@ -19,7 +19,6 @@ import oracle.ucp.jdbc.LabelableConnection;
 import oracle.ucp.jdbc.PoolDataSource;
 import oracle.ucp.jdbc.PoolDataSourceFactory;
 
-
 public final class UCPMgr
 {
     /** Log */

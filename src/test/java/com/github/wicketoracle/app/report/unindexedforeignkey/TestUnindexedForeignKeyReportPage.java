@@ -19,5 +19,6 @@ public class TestUnindexedForeignKeyReportPage extends TestCase
         tester.doUnitTestLogin();
         tester.startPage( UnindexedForeignKeyReportPage.class );
         tester.assertRenderedPage( UnindexedForeignKeyReportPage.class );
+        tester.assertNoLeakedConnections();
     }
 }

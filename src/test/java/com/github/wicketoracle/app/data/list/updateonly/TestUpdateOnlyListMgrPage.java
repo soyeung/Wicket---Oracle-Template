@@ -20,5 +20,6 @@ public class TestUpdateOnlyListMgrPage extends TestCase
         tester.doUnitTestLogin();
         tester.startPage( new UpdateOnlyListMgrPage( new DataStructure( 1 , "" , "" , true , "X" , true ) ) );
         tester.assertRenderedPage( UpdateOnlyListMgrPage.class );
+        tester.assertNoLeakedConnections();
     }
 }

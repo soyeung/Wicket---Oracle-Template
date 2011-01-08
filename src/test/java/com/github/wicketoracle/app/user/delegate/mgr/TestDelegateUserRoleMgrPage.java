@@ -21,6 +21,7 @@ public class TestDelegateUserRoleMgrPage extends TestCase
         tester.doUnitTestLogin();
         tester.startPage( new DelegateUserRoleMgrPage( new DelegateUser( 2 , "UNIT_TEST" , null , null , null , null , null , false ) ) );
         tester.assertRenderedPage( DelegateUserRoleMgrPage.class );
+        tester.assertNoLeakedConnections();
     }
 
     public final void testSubmitForm()
@@ -29,5 +30,6 @@ public class TestDelegateUserRoleMgrPage extends TestCase
         FormTester formTester = tester.newFormTester( "FormRoleMgr" );
         formTester.submit();
         tester.assertRenderedPage( DelegateUserRoleMgrPage.class );
+        tester.assertNoLeakedConnections();
     }
 }

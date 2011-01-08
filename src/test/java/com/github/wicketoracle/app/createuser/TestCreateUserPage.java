@@ -22,6 +22,7 @@ public class TestCreateUserPage extends TestCase
         tester.doUnitTestLogin();
         tester.clickLink( "PanelMenu:LinkCreateUser" );
         tester.assertRenderedPage( CreateUserPage.class );
+        tester.assertNoLeakedConnections();
     }
 
     private void testCreateUser
@@ -41,6 +42,7 @@ public class TestCreateUserPage extends TestCase
         formTester.select( "userLocale"  , 0 );
         formTester.submit();
         tester.assertRenderedPage( CreateUserPage.class );
+        tester.assertNoLeakedConnections();
     }
 
     public final void testNonMatchingPasswords()

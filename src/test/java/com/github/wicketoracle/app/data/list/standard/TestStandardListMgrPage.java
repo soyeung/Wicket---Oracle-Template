@@ -20,5 +20,6 @@ public class TestStandardListMgrPage extends TestCase
         tester.doUnitTestLogin();
         tester.startPage( new StandardListMgrPage( new DataStructure( 1 , "" , "" , true , "X" , true ) ) );
         tester.assertRenderedPage( StandardListMgrPage.class );
+        tester.assertNoLeakedConnections();
     }
 }

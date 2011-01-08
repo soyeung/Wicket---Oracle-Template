@@ -21,6 +21,7 @@ public class TestStandardUserRoleMgrPage extends TestCase
         tester.doUnitTestLogin();
         tester.startPage( new StandardUserRoleMgrPage( new StandardUser( 4 , "UNIT_TEST" , null , null , null , null , null , null , false ) ) );
         tester.assertRenderedPage( StandardUserRoleMgrPage.class );
+        tester.assertNoLeakedConnections();
     }
 
     public final void testSubmitForm()
@@ -29,5 +30,6 @@ public class TestStandardUserRoleMgrPage extends TestCase
         FormTester formTester = tester.newFormTester( "FormRoleMgr" );
         formTester.submit();
         tester.assertRenderedPage( StandardUserRoleMgrPage.class );
+        tester.assertNoLeakedConnections();
     }
 }

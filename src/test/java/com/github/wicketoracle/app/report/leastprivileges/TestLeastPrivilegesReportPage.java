@@ -19,5 +19,6 @@ public class TestLeastPrivilegesReportPage extends TestCase
         tester.doUnitTestLogin();
         tester.startPage( LeastPrivilegesReportPage.class );
         tester.assertRenderedPage( LeastPrivilegesReportPage.class );
+        tester.assertNoLeakedConnections();
     }
 }

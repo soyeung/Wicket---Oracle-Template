@@ -21,6 +21,7 @@ public class TestLogonHistoryReportPage extends TestCase
         tester.doUnitTestLogin();
         tester.startPage( LogonHistoryReportPage.class );
         tester.assertRenderedPage( LogonHistoryReportPage.class );
+        tester.assertNoLeakedConnections();
     }
 
     public final void testSearchForm()
@@ -30,5 +31,6 @@ public class TestLogonHistoryReportPage extends TestCase
         FormTester formTester = tester.newFormTester( "searchForm" );
         formTester.submit();
         tester.assertRenderedPage( LogonHistoryReportPage.class );
+        tester.assertNoLeakedConnections();
     }
 }

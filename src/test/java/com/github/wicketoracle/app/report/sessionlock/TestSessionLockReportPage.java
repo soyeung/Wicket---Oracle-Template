@@ -19,5 +19,6 @@ public class TestSessionLockReportPage extends TestCase
         tester.doUnitTestLogin();
         tester.startPage( SessionLockReportPage.class );
         tester.assertRenderedPage( SessionLockReportPage.class );
+        tester.assertNoLeakedConnections();
     }
 }

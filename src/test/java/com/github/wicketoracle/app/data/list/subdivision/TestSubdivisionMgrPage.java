@@ -20,5 +20,6 @@ public class TestSubdivisionMgrPage extends TestCase
         tester.doUnitTestLogin();
         tester.startPage( new SubdivisionListMgrPage( new DataStructure( 1 , "" , "" , true , "X" , true ) ) );
         tester.assertRenderedPage( SubdivisionListMgrPage.class );
+        tester.assertNoLeakedConnections();
     }
 }

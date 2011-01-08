@@ -19,5 +19,6 @@ public class TestChangePasswordPage extends TestCase
         tester.doUnitTestLogin();
         tester.clickLink( "PanelMenu:LinkChangePassword" );
         tester.assertRenderedPage( ChangePasswordPage.class );
+        tester.assertNoLeakedConnections();
     }
 }

@@ -19,5 +19,6 @@ public class TestUCPConfigPage extends TestCase
         tester.doUnitTestLogin();
         tester.clickLink( "PanelMenu:LinkManageUCP" );
         tester.assertRenderedPage( UCPConfigPage.class );
+        tester.assertNoLeakedConnections();
     }
 }

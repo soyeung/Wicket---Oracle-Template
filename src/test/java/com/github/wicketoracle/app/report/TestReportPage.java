@@ -19,5 +19,6 @@ public class TestReportPage extends TestCase
         tester.doUnitTestLogin();
         tester.clickLink( "PanelMenu:LinkReports" );
         tester.assertRenderedPage( ReportPage.class );
+        tester.assertNoLeakedConnections();
     }
 }

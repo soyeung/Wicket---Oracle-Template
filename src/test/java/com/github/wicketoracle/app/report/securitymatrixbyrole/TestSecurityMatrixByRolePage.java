@@ -21,6 +21,7 @@ public class TestSecurityMatrixByRolePage extends TestCase
         tester.doUnitTestLogin();
         tester.startPage( SecurityMatrixByRoleReportPage.class );
         tester.assertRenderedPage( SecurityMatrixByRoleReportPage.class );
+        tester.assertNoLeakedConnections();
     }
 
     public final void testSearchForm()
@@ -30,5 +31,6 @@ public class TestSecurityMatrixByRolePage extends TestCase
         FormTester formTester = tester.newFormTester( "searchForm" );
         formTester.submit();
         tester.assertRenderedPage( SecurityMatrixByRoleReportPage.class );
+        tester.assertNoLeakedConnections();
     }
 }

@@ -21,5 +21,6 @@ public class TestCodedListMgrPage extends TestCase
         tester.doUnitTestLogin();
         tester.startPage( new CodedListMgrPage( new DataStructure( 1 , "" , "" , true , "X" , true ) ) );
         tester.assertRenderedPage( CodedListMgrPage.class );
+        tester.assertNoLeakedConnections();
     }
 }

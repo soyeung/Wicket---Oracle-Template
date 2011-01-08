@@ -19,5 +19,6 @@ public class TestUsageDataReport extends TestCase
         tester.doUnitTestLogin();
         tester.startPage( UsageReportPage.class );
         tester.assertRenderedPage( UsageReportPage.class );
+        tester.assertNoLeakedConnections();
     }
 }

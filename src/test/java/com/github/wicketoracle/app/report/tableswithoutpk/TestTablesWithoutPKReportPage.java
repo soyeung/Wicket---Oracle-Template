@@ -19,5 +19,6 @@ public class TestTablesWithoutPKReportPage extends TestCase
         tester.doUnitTestLogin();
         tester.startPage( TablesWithoutPKReportPage.class );
         tester.assertRenderedPage( TablesWithoutPKReportPage.class );
+        tester.assertNoLeakedConnections();
     }
 }
