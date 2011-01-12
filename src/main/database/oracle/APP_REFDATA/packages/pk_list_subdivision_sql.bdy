@@ -45,9 +45,7 @@ as
 
         v_sql := v_sql || '   select '
                        || '          ' || v_view_alias || '.' || v_rds_column_prefix || pk_ref_data_column_names.c_id_suffix      || ' ' || pk_ref_data_column_names.c_id_alias
-                       || '        , ' || v_view_alias || '.' || v_rds_column_prefix || pk_ref_data_column_names.c_code_suffix    || ' ' || pk_ref_data_column_names.c_code_alias
                        || '        , ' || v_view_alias || '.' || v_rds_column_prefix || pk_ref_data_column_names.c_name_suffix    || ' ' || pk_ref_data_column_names.c_name_alias
-                       || '        , ' || v_view_alias || '.' || v_rds_column_prefix || pk_ref_data_column_names.c_order_suffix   || ' ' || pk_ref_data_column_names.c_order_alias
                        || '        , ' || v_view_alias || '.' || v_rds_column_prefix || pk_ref_data_column_names.c_include_suffix || ' ' || pk_ref_data_column_names.c_include_alias
                        || '     from '
                        || '          ' || v_rds_owning_schema || '.' || v_rds_admin_view || ' ' || v_view_alias
